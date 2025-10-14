@@ -4,45 +4,51 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DARKLAKE</title>
-
-  <!-- Preload and load Lexend Zetta correctly -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lexend+Zetta&display=block" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Lexend+Zetta&display=block" rel="stylesheet"></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@400&display=swap" rel="stylesheet">
 
   <style>
-    html, body {
+    * {
       margin: 0;
-      height: 100%;
-      background-color: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #CCC;
-      text-align: center;
-      overflow: hidden;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      opacity: 0; /* hide until font loads */
-      transition: opacity 0.2s ease-in;
+      background-color: #000;
+      color: #a0a0a0;
+      font-family: 'Lexend Zetta', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
     }
 
     h1 {
-      font-family: 'Lexend Zetta', sans-serif;
-      font-size: clamp(40px, 10vw, 150px);
-      text-transform: uppercase;
-      margin: 0;
+      font-size: clamp(2rem, 8vw, 6rem);
+      letter-spacing: 6px;
+      opacity: 0;
+      transform: scale(0.95);
+      text-shadow: 0 0 20px #111;
+      animation: appear 4s ease forwards, pulse 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes appear {
+      0% { opacity: 0; transform: scale(0.95); text-shadow: 0 0 5px #000; }
+      50% { opacity: 0.5; transform: scale(1); text-shadow: 0 0 10px #333; }
+      100% { opacity: 1; transform: scale(1); text-shadow: 0 0 30px #777; }
+    }
+
+    @keyframes pulse {
+      0% { text-shadow: 0 0 10px #333; }
+      100% { text-shadow: 0 0 25px #888; }
     }
   </style>
 </head>
+
 <body>
   <h1>DARKLAKE</h1>
-
-  <script>
-    // Wait until Lexend Zetta is fully loaded, then reveal
-    document.fonts.load('1em "Lexend Zetta"').then(() => {
-      document.body.style.opacity = '1';
-    });
-  </script>
 </body>
 </html>
+
