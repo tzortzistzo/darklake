@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DARKLAKE</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend+Zetta&display=swap" rel="stylesheet">
+  <!-- Preload Lexend Zetta for faster loading -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lexend+Zetta&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Lexend+Zetta&display=swap" rel="stylesheet"></noscript>
   <style>
     body {
       margin: 0;
@@ -13,18 +15,28 @@
       justify-content: center;
       align-items: center;
       background-color: #000;
-      color: #CCCCCC; /* Slightly grey text */
+      color: #CCC;
+      text-align: center;
+      overflow: hidden;
+      opacity: 0; /* hide text until font loads */
+    }
+
+    h1 {
       font-family: 'Lexend Zetta', sans-serif;
-      /* Use clamp for responsive font size: min 40px, ideal 10vw, max 150px */
       font-size: clamp(40px, 10vw, 150px);
       text-transform: uppercase;
-      text-align: center;
-      overflow: hidden; /* Prevent accidental overflow on small screens */
+      margin: 0;
     }
   </style>
 </head>
 <body>
-  DARKLAKE
+  <h1>DARKLAKE</h1>
+
+  <script>
+    // Wait for Lexend Zetta to load before showing text
+    document.fonts.load('1em "Lexend Zetta"').then(() => {
+      document.body.style.opacity = '1';
+    });
+  </script>
 </body>
 </html>
-
