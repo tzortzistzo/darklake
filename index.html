@@ -126,12 +126,11 @@
     display: none;
   }
   .matrix-line {
-    font-family: inherit;
-    font-size: 0.9rem;
-    letter-spacing: normal;
-    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin: 6px 0;
   }
-  /* Removed .matrix-letter fixed width and monospace to ensure normal spacing */
   .matrix-letter {
     display: inline;
     text-align: center;
@@ -186,7 +185,7 @@
         span.style.color = '#eee';
         span.style.opacity = '1';
       });
-    }, 8400);
+    }, 7900);
   });
 
   form.addEventListener('submit', async (e) => {
