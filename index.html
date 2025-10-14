@@ -15,14 +15,11 @@
       background-color: #000;
       color: #CCCCCC; /* Slightly grey text */
       font-family: 'Lexend Zetta', sans-serif;
-      font-size: 10vw;
+      /* Use clamp for responsive font size: min 40px, ideal 10vw, max 150px */
+      font-size: clamp(40px, 10vw, 150px);
       text-transform: uppercase;
-    }
-
-    @media (max-width: 600px) {
-      body {
-        font-size: 15vw;
-      }
+      text-align: center;
+      overflow: hidden; /* Prevent accidental overflow on small screens */
     }
   </style>
 </head>
@@ -30,3 +27,4 @@
   DARKLAKE
 </body>
 </html>
+
