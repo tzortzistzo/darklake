@@ -126,16 +126,15 @@
     display: none;
   }
   .matrix-line {
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
-    margin: 6px 0;
+    font-family: inherit;
+    font-size: 0.9rem;
+    letter-spacing: normal;
+    white-space: nowrap;
   }
+  /* Removed .matrix-letter fixed width and monospace to ensure normal spacing */
   .matrix-letter {
-    display: inline-block;
-    width: 12px;
+    display: inline;
     text-align: center;
-    font-family: monospace;
   }
 </style>
 </head>
@@ -164,26 +163,23 @@
   const enjoySpan = document.getElementById('enjoy');
   const darklake = document.getElementById('darklake');
 
-  // Custom validation for email
   const emailInput = form.querySelector('input[type="email"]');
-  emailInput.addEventListener('invalid', function() {
+  emailInput.addEventListener('invalid', function(){
     this.setCustomValidity('Enter your email.');
   });
-  emailInput.addEventListener('input', function() {
+  emailInput.addEventListener('input', function(){
     this.setCustomValidity('');
   });
 
   window.addEventListener('load', () => {
-    // Remove glint animations after effect finishes (~7.5s)
     setTimeout(() => {
       darklake.querySelectorAll('span').forEach(span => {
         span.style.animation = 'none';
-        span.style.color = '#505050'; // reset to dim color
+        span.style.color = '#505050'; // dim color
         span.style.opacity = '1';
       });
     }, 7500);
 
-    // Brighten all letters smoothly at 8.4s (1.5s after glint ends)
     setTimeout(() => {
       darklake.style.color = '#eee';
       darklake.querySelectorAll('span').forEach(span => {
@@ -230,23 +226,25 @@
   });
 
   function animateMatrixText(text, container, callback) {
-    text = text.trim(); // Trim trailing spaces
+    text = text.trim();
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let iterations = 0;
     let interval = setInterval(() => {
-      const displayed = text
-        .split("")
-        .map((char, i) => {
-          if (i < iterations) return text[i];
-          if (char === " ") return " ";
-          if (/[.,!?]/.test(char)) return char; // keep punctuation normal
-          return letters[Math.floor(Math.random() * letters.length)];
-        })
-        .join("");
-      container.innerHTML = displayed
-        .split("")
-        .map(c => `<span class="matrix-letter">${c}</span>`)
-        .join("");
+      let displayed = "";
+      for (let i = 0; i < text.length; i++) {
+        if (i < Math.floor(iterations)) {
+          displayed += text[i];
+        } else {
+          if (text[i] === " ") {
+            displayed += " ";
+          } else if (/[.,!?]/.test(text[i])) {
+            displayed += text[i];
+          } else {
+            displayed += letters[Math.floor(Math.random() * letters.length)];
+          }
+        }
+      }
+      container.textContent = displayed;
       if (iterations >= text.length) {
         clearInterval(interval);
         if (callback) setTimeout(callback, 500);
@@ -258,4 +256,3 @@
 
 </body>
 </html>
-
