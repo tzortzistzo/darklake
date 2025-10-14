@@ -9,12 +9,6 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html, body {
-    overflow: hidden !important;
-    touch-action: none;
-    height: 100dvh;
-  }
-
   body {
     background-color: #000;
     font-family: 'Lexend Zetta', sans-serif;
@@ -23,6 +17,8 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    min-height: 100vh;
+    overflow: hidden;
   }
 
   h1 {
@@ -124,15 +120,24 @@
     display: none;
     margin-top: 12px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .matrix-line {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin: 6px 0;
   }
 
   .matrix-letter {
     display: inline-block;
     width: 10px;
-  }
-
-  .matrix-line {
-    display: block;
+    text-align: center;
   }
 </style>
 </head>
@@ -160,6 +165,15 @@
   const receivedSpan = document.getElementById('received');
   const enjoySpan = document.getElementById('enjoy');
 
+  // Custom validation for email
+  const emailInput = document.querySelector('input[type="email"]');
+  emailInput.addEventListener('invalid', function() {
+    this.setCustomValidity('Enter your email.');
+  });
+  emailInput.addEventListener('input', function() {
+    this.setCustomValidity('');
+  });
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = new FormData(form);
@@ -174,6 +188,7 @@
       form.style.display = 'none';
       successMessage.style.display = 'inline-block';
 
+      // Time-sensitive second message
       const now = new Date();
       const hour = now.getHours();
       let message = "ENJOY YOUR DAY.";
@@ -219,6 +234,7 @@
 
 </body>
 </html>
+
 
 
 
