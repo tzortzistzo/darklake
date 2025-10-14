@@ -4,10 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DARKLAKE</title>
-  <!-- Preload Lexend Zetta for faster loading -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lexend+Zetta&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Lexend+Zetta&display=swap" rel="stylesheet"></noscript>
+  
+  <!-- Inline @font-face with font-display: block to prevent FOUT -->
   <style>
+    @font-face {
+      font-family: 'Lexend Zetta';
+      font-style: normal;
+      font-weight: 400;
+      src: url('https://fonts.gstatic.com/s/lexendzetta/v3/f4XiYb1BAXg25zJ6sS3QAw.woff2') format('woff2');
+      font-display: block; /* ensures text waits for font before rendering */
+    }
+
     body {
       margin: 0;
       height: 100vh;
@@ -17,12 +24,10 @@
       background-color: #000;
       color: #CCC;
       text-align: center;
-      overflow: hidden;
-      opacity: 0; /* hide text until font loads */
+      font-family: 'Lexend Zetta', sans-serif;
     }
 
     h1 {
-      font-family: 'Lexend Zetta', sans-serif;
       font-size: clamp(40px, 10vw, 150px);
       text-transform: uppercase;
       margin: 0;
@@ -31,12 +36,5 @@
 </head>
 <body>
   <h1>DARKLAKE</h1>
-
-  <script>
-    // Wait for Lexend Zetta to load before showing text
-    document.fonts.load('1em "Lexend Zetta"').then(() => {
-      document.body.style.opacity = '1';
-    });
-  </script>
 </body>
 </html>
