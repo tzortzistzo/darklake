@@ -32,13 +32,19 @@
     opacity: 0;
     transform: scale(0.98);
     animation: revealOpacity 5s ease forwards;
-    color: #505050; /* consistently dim */
+    color: #505050; /* dim color */
     transition: color 1s ease;
     white-space: nowrap;
   }
   @keyframes revealOpacity {
-    0% { opacity: 0; transform: scale(0.98) }
-    100% { opacity: 1; transform: scale(1) }
+    0% {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
   h1 span {
     display: inline-block;
@@ -50,7 +56,7 @@
     50% { color: #fff; }
     100% { color: #505050; }
   }
-  /* Glint animation delays */
+  /* Animation delays for letters */
   h1 span:nth-child(1) { animation-delay: 3s; }
   h1 span:nth-child(2) { animation-delay: 3.2s; }
   h1 span:nth-child(3) { animation-delay: 3.4s; }
@@ -59,7 +65,6 @@
   h1 span:nth-child(6) { animation-delay: 4.0s; }
   h1 span:nth-child(7) { animation-delay: 4.2s; }
   h1 span:nth-child(8) { animation-delay: 4.4s; }
-
   .form-container {
     margin-top: 40px;
     text-align: center;
@@ -161,31 +166,31 @@
 
   // Custom validation for email
   const emailInput = form.querySelector('input[type="email"]');
-  emailInput.addEventListener('invalid', function() {
+  emailInput.addEventListener('invalid', function(){
     this.setCustomValidity('Enter your email.');
   });
-  emailInput.addEventListener('input', function() {
+  emailInput.addEventListener('input', function(){
     this.setCustomValidity('');
   });
 
   window.addEventListener('load', () => {
-    // Remove glint animations for all letters at ~7.5s (3s + 2.5s + 2s buffer)
+    // Remove glint animation and revert all letters to dim after glint finishes (4.4s + 2.5s = 6.9s)
     setTimeout(() => {
       darklake.querySelectorAll('span').forEach(span => {
         span.style.animation = 'none';
-        span.style.color = '#505050'; // dim all
+        span.style.color = '#505050'; // dim color
         span.style.opacity = '1';
       });
-    }, 7500);
+    }, 6900);
 
-    // Brighten all letters simultaneously at 7.7s (kept consistent here)
+    // Brighten all letters to white 1.5 seconds after glint finishes (6.9s + 1.5s = 8.4s)
     setTimeout(() => {
       darklake.style.color = '#eee'; // bright white
       darklake.querySelectorAll('span').forEach(span => {
         span.style.color = '#eee';
         span.style.opacity = '1';
       });
-    }, 7700);
+    }, 8400);
   });
 
   form.addEventListener('submit', async (e) => {
@@ -244,4 +249,13 @@
 
       if (iterations >= text.length) {
         clearInterval(interval);
-        if (callback) setTimeout(callback
+        if (callback) setTimeout(callback, 500);
+      }
+
+      iterations += 1 / 3;
+    }, 50);
+  }
+</script>
+
+</body>
+</html>
