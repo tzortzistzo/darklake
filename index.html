@@ -86,16 +86,31 @@
     from {opacity: 0; transform: translateY(10px);}
     to {opacity: 1; transform: translateY(0);}
   }
-  .form-container p {
+  
+  /* Updated styles for the aligned container */
+  .aligned-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 340px; /* Matches the width of the form */
+  }
+  
+  .access-text {
     color: #777777;
     font-size: 0.8rem;
     letter-spacing: 1px;
     margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
   }
+  
   form {
     display: flex;
     gap: 10px;
     justify-content: center;
+    width: 100%;
   }
   input[type="email"] {
     padding: 10px 14px;
@@ -105,7 +120,8 @@
     font-family: monospace;
     font-size: 16px;
     outline: none;
-    width: 220px;
+    flex: 1;
+    min-width: 0;
   }
   input::placeholder {
     color: #555;
@@ -120,6 +136,7 @@
     font-size: 0.9rem;
     letter-spacing: 0.5px;
     transition: all 0.2s ease;
+    flex-shrink: 0;
   }
   button:hover {
     color: #fff;
@@ -190,16 +207,18 @@
 </h1>
 
 <div class="form-container" id="form-container">
-  <p>ACCESS THE BETA PROGRAM</p>
-  <form id="betaForm" method="POST" novalidate>
-    <input type="email" name="email" placeholder="enter your email" required />
-    <button type="submit">&gt;</button>
-  </form>
-  <div class="success-message" id="successMessage">
-    <span id="received" class="matrix-line"></span>
-    <span id="enjoy" class="matrix-line"></span>
-    <div id="redirecting-container" style="display:none;">
-      <span id="redirecting-text"></span> <span id="countdown">5</span>
+  <div class="aligned-container">
+    <p class="access-text">ACCESS THE BETA PROGRAM</p>
+    <form id="betaForm" method="POST" novalidate>
+      <input type="email" name="email" placeholder="enter your email" required />
+      <button type="submit">&gt;</button>
+    </form>
+    <div class="success-message" id="successMessage">
+      <span id="received" class="matrix-line"></span>
+      <span id="enjoy" class="matrix-line"></span>
+      <div id="redirecting-container" style="display:none;">
+        <span id="redirecting-text"></span> <span id="countdown">5</span>
+      </div>
     </div>
   </div>
 </div>
