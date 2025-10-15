@@ -18,6 +18,7 @@
     overflow: hidden;
     position: fixed; top: 0; left: 0;
     touch-action: none;
+    cursor: default;
   }
   body {
     background-color: #000;
@@ -25,6 +26,7 @@
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     text-align: center;
     min-height: 100vh;
+    padding-bottom: 40px; /* space for footer */
   }
   input, textarea, select {
     font-size: 16px;
@@ -44,7 +46,8 @@
     display: inline-block;
     color: #505050;
     animation: glint 2.5s ease forwards;
-    transition: color 1s ease;
+    transition: color 1s ease, opacity 0.3s ease;
+    opacity: 1;
   }
   @keyframes revealOpacity {
     0% { opacity: 0; transform: scale(0.98); }
@@ -84,7 +87,7 @@
     to {opacity: 1; transform: translateY(0);}
   }
   .form-container p {
-    color: #777;
+    color: #777777;
     font-size: 0.8rem;
     letter-spacing: 1px;
     margin-bottom: 10px;
@@ -152,6 +155,32 @@
     letter-spacing: 1px;
     user-select: none;
   }
+
+  /* Footer with email contact */
+  .footer-contact {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-family: monospace;
+    font-size: 14px;
+    color: #777777;
+    user-select: text;
+    pointer-events: auto;
+    opacity: 0;
+    animation: fadeInForm 1.5s ease forwards;
+    animation-delay: 6.5s;
+  }
+  .footer-contact a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .footer-contact a:hover,
+  .footer-contact a:focus {
+    color: #eee;
+    outline: none;
+  }
 </style>
 </head>
 <body>
@@ -175,6 +204,11 @@
   </div>
 </div>
 
+<!-- Footer email contact -->
+<div class="footer-contact">
+  <a href="mailto:hello@darklake.cc" aria-label="Email contact hello@darklake.cc">hello@darklake.cc</a>
+</div>
+
 <script>
   const form = document.getElementById('betaForm');
   const successMessage = document.getElementById('successMessage');
@@ -184,6 +218,7 @@
   const countdownSpan = document.getElementById('countdown');
   const redirectingContainer = document.getElementById('redirecting-container');
   const darklake = document.getElementById('darklake');
+  const letterSpans = darklake.querySelectorAll('span');
 
   const emailInput = form.querySelector('input[type="email"]');
   emailInput.addEventListener('invalid', () => {
@@ -194,20 +229,20 @@
   });
 
   window.addEventListener('load', () => {
-    // At 7100ms remove animations and clear inline colors for smooth transition
     setTimeout(() => {
-      darklake.querySelectorAll('span').forEach(span => {
+      letterSpans.forEach(span => {
         span.style.animation = 'none';
         span.style.color = '';
         span.style.opacity = '1';
       });
     }, 7100);
 
-    // Slightly after, at 7200ms, add white class to trigger smooth CSS transition
     setTimeout(() => {
       darklake.classList.add('white');
     }, 7200);
   });
+
+  // All mouse interaction removed for text; no tint, no dim effect
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
