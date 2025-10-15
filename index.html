@@ -194,6 +194,8 @@
     right: 0;
     height: 60px;
     margin-top: 12px;
+    cursor: none;
+    pointer-events: none;
   }
   
   .message-container {
@@ -205,6 +207,8 @@
     opacity: 0;
     transition: opacity 0.3s ease;
     font-size: 0.8rem;
+    cursor: none;
+    pointer-events: none;
   }
   
   .message-container.active {
@@ -217,6 +221,8 @@
     flex-wrap: nowrap;
     margin: 0;
     font-size: 0.8rem;
+    cursor: none;
+    pointer-events: none;
   }
   
   .matrix-letter {
@@ -231,6 +237,8 @@
     letter-spacing: 1px;
     user-select: none;
     text-transform: uppercase;
+    cursor: none;
+    pointer-events: none;
   }
 
   /* Fixed footer */
@@ -430,7 +438,7 @@
     e.preventDefault();
     const data = new FormData(form);
     try {
-      const response = await fetch('https://formspree.io/f/xanpapjp', {
+      const response = await fetch('https://formspree.io/f/mblzqgan', {
         method: 'POST',
         body: data,
         headers: { Accept: 'application/json' }
