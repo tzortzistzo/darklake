@@ -129,8 +129,8 @@
     width: 100%;
     text-align: center;
     white-space: nowrap;
-    padding: 0 10px; /* Match form horizontal padding */
-    box-sizing: border-box; /* Ensure padding is included in width */
+    padding: 0;
+    box-sizing: border-box;
   }
   
   form {
@@ -138,8 +138,8 @@
     gap: 10px;
     justify-content: center;
     width: 100%;
-    padding: 0 10px; /* Added padding to match access-text */
-    box-sizing: border-box; /* Ensure padding is included in width */
+    padding: 0;
+    box-sizing: border-box;
   }
   
   input[type="email"] {
@@ -169,7 +169,7 @@
     letter-spacing: 0.5px;
     transition: all 0.2s ease;
     flex-shrink: 0;
-    width: 50px; /* Fixed width for consistent alignment */
+    width: 50px;
   }
   
   button:hover {
@@ -238,8 +238,8 @@
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    font-family: monospace; /* Restored to monospace */
-    font-size: 14px; /* Restored to original size */
+    font-family: monospace;
+    font-size: 14px;
     color: #777777;
     user-select: text;
     pointer-events: auto;
@@ -248,7 +248,6 @@
     animation-delay: 6.5s;
     z-index: 10;
     white-space: nowrap;
-    /* Removed text-transform: lowercase and letter-spacing to match original */
   }
   
   .footer-contact a {
@@ -265,43 +264,32 @@
 
   /* Mobile and Tablet adjustments */
   @media (max-width: 1024px) {
-    /* For tablets and smaller desktops */
     .form-container {
-      max-width: 380px; /* Slightly wider for tablets */
-    }
-    
-    .access-text, form {
-      padding: 0 15px; /* Slightly more padding for tablets */
+      max-width: 380px;
     }
   }
 
   @media (max-width: 768px) {
-    /* For tablets and large phones - FIXED ALIGNMENT */
+    /* PERFECT ALIGNMENT FOR TABLETS */
     .form-container {
-      max-width: 320px; /* Match the width of "ACCESS THE BETA PROGRAM" text */
+      max-width: 320px;
       top: calc(40% + 70px);
     }
     
     .aligned-container {
       max-width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
     
     .access-text {
-      width: 100%;
-      padding: 0 12px;
-      text-align: center;
-      white-space: nowrap;
-      box-sizing: border-box;
+      width: calc(100% - 24px); /* Match form width exactly */
+      margin: 0 auto 10px;
+      padding: 0;
     }
     
     form {
-      width: 100%;
-      padding: 0 12px;
-      min-width: auto;
-      box-sizing: border-box;
+      width: calc(100% - 24px); /* Same width as text */
+      margin: 0 auto;
+      padding: 0;
     }
     
     input[type="email"] {
@@ -315,63 +303,59 @@
   }
 
   @media (max-width: 480px) {
-    /* For mobile phones - PERFECT CENTER ALIGNMENT */
+    /* PERFECT ALIGNMENT FOR MOBILE */
     h1 {
       top: 38%;
     }
     
     .form-container {
       top: calc(38% + 70px);
-      max-width: 300px; /* Slightly smaller for mobile */
-    }
-    
-    .access-text, form {
-      padding: 0 10px; /* Consistent padding */
+      max-width: 300px;
     }
     
     .access-text {
+      width: calc(100% - 20px); /* Exact same width as form */
       font-size: 0.8rem;
-      letter-spacing: 1px;
+      letter-spacing: 0.9px; /* Slightly reduced for better fit */
+    }
+    
+    form {
+      width: calc(100% - 20px); /* Exact same width as text */
     }
     
     input[type="email"] {
-      padding: 8px 12px; /* Slightly smaller padding on mobile */
+      padding: 8px 12px;
     }
     
     button {
-      padding: 8px 14px; /* Slightly smaller padding on mobile */
+      padding: 8px 14px;
     }
   }
 
   @media (min-width: 1200px) {
-    /* For large desktops and TVs */
     .form-container {
-      max-width: 360px; /* Slightly wider for large screens */
-    }
-    
-    .access-text, form {
-      padding: 0 12px; /* Consistent padding for large screens */
+      max-width: 360px;
     }
   }
 
-  /* Extra small mobile devices - PERFECT CENTER ALIGNMENT */
+  /* Extra small mobile devices - PERFECT ALIGNMENT */
   @media (max-width: 360px) {
     .form-container {
       max-width: 280px;
     }
     
-    .access-text, form {
-      padding: 0 8px; /* Smaller padding for very small screens */
+    .access-text {
+      width: calc(100% - 16px); /* Exact same width as form */
+      font-size: 0.75rem;
+      letter-spacing: 0.8px;
     }
     
-    .access-text {
-      font-size: 0.75rem; /* Slightly smaller text for very small screens */
-      letter-spacing: 0.8px; /* Slightly reduced letter spacing */
+    form {
+      width: calc(100% - 16px); /* Exact same width as text */
     }
     
     input[type="email"] {
-      max-width: none;
-      font-size: 14px; /* Smaller font for very small screens */
+      font-size: 14px;
     }
     
     button {
@@ -550,7 +534,7 @@
           window.location.href = 'https://www.google.com';
         }
       }, 1000);
-  });
+    });
   }
 </script>
 
