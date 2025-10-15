@@ -91,24 +91,25 @@
     color: #eee !important;
   }
 
-  /* Form container - fixed position */
+  /* Form container - PERFECT CENTER */
   .form-container {
     text-align: center;
     opacity: 0;
     animation: fadeInForm 1.5s ease forwards;
     animation-delay: 6.5s;
     position: fixed;
-    top: calc(40% + 80px);
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     z-index: 10;
     width: 100%;
     max-width: 340px;
+    margin-top: 100px; /* Push below DARKLAKE text */
   }
   
   @keyframes fadeInForm {
-    from {opacity: 0; transform: translateX(-50%) translateY(10px);}
-    to {opacity: 1; transform: translateX(-50%) translateY(0);}
+    from {opacity: 0; transform: translate(-50%, -50%) translateY(10px);}
+    to {opacity: 1; transform: translate(-50%, -50%) translateY(0);}
   }
   
   .aligned-container {
@@ -116,9 +117,10 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    justify-content: center;
   }
   
-  /* ACCESS THE BETA PROGRAM - perfectly aligned with form */
+  /* ACCESS THE BETA PROGRAM - perfectly centered */
   .access-text {
     color: #777777;
     font-size: 0.8rem;
@@ -127,7 +129,7 @@
     width: 100%;
     text-align: center;
     white-space: nowrap;
-    padding: 0 10px;
+    padding: 0;
   }
   
   form {
@@ -135,7 +137,7 @@
     gap: 10px;
     justify-content: center;
     width: 100%;
-    padding: 0 10px;
+    padding: 0;
   }
   
   input[type="email"] {
@@ -186,8 +188,9 @@
     display: none;
     position: absolute;
     top: 100%;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
     height: 60px;
     margin-top: 12px;
   }
@@ -229,10 +232,10 @@
     text-transform: uppercase;
   }
 
-  /* Fixed footer */
+  /* Fixed footer - PERFECT CENTER */
   .footer-contact {
     position: fixed;
-    bottom: 10px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -246,6 +249,7 @@
     animation-delay: 6.5s;
     z-index: 10;
     white-space: nowrap;
+    width: 100%;
   }
   
   .footer-contact a {
@@ -260,22 +264,36 @@
     outline: none;
   }
 
-  /* Mobile adjustments - WIDER FORM CONTAINER */
+  /* Mobile adjustments - PERFECT CENTER ALIGNMENT */
   @media (max-width: 768px) {
+    h1 {
+      top: 35% !important; /* Adjusted for better mobile centering */
+    }
+    
     .form-container {
-      max-width: 340px; /* Wider on mobile to match text width */
-      top: calc(40% + 70px);
+      max-width: 320px;
+      margin-top: 120px; /* Adjusted spacing for mobile */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .aligned-container {
+      width: 100%;
+      align-items: center;
+      justify-content: center;
     }
     
     .access-text, form {
       width: 100%;
-      padding: 0 15px; /* Slightly more padding for wider layout */
+      padding: 0;
+      text-align: center;
     }
     
     .access-text {
       font-size: 0.8rem;
       letter-spacing: 1px;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
     
     /* Ensure all success message text has same size */
@@ -288,27 +306,34 @@
     
     form {
       display: flex;
-      gap: 8px;
+      gap: 10px;
+      justify-content: center;
     }
     
     input[type="email"] {
-      padding: 8px 12px;
-      font-size: 14px;
+      padding: 12px 14px;
+      font-size: 16px;
     }
     
     button {
-      padding: 8px 14px;
-      width: 45px;
+      padding: 12px 16px;
+      width: 50px;
+    }
+    
+    .footer-contact {
+      bottom: 15px;
+      font-size: 13px;
     }
   }
 
   @media (max-width: 480px) {
-    .form-container {
-      max-width: 320px; /* Even wider on smaller phones */
+    h1 {
+      top: 32% !important;
     }
     
-    .access-text, form {
-      padding: 0 12px;
+    .form-container {
+      max-width: 300px;
+      margin-top: 130px;
     }
     
     .access-text {
@@ -316,43 +341,47 @@
       letter-spacing: 1px;
     }
     
-    /* Ensure all success message text has same size */
-    .success-message,
-    .message-container,
-    .matrix-line,
-    #redirecting-container {
-      font-size: 0.8rem !important;
+    input[type="email"] {
+      padding: 10px 12px;
+      font-size: 16px;
+    }
+    
+    button {
+      padding: 10px 14px;
+    }
+    
+    .footer-contact {
+      bottom: 10px;
+      font-size: 12px;
     }
   }
 
   @media (max-width: 360px) {
-    .form-container {
-      max-width: 300px; /* Maximum width for very small screens */
+    h1 {
+      top: 30% !important;
     }
     
-    .access-text, form {
-      padding: 0 10px;
+    .form-container {
+      max-width: 280px;
+      margin-top: 140px;
     }
     
     .access-text {
-      font-size: 0.8rem;
-      letter-spacing: 1px;
-    }
-    
-    /* Ensure all success message text has same size */
-    .success-message,
-    .message-container,
-    .matrix-line,
-    #redirecting-container {
-      font-size: 0.8rem !important;
+      font-size: 0.75rem;
+      letter-spacing: 0.9px;
     }
     
     input[type="email"] {
-      padding: 6px 10px;
+      padding: 8px 10px;
+      font-size: 14px;
     }
     
     button {
-      padding: 6px 12px;
+      padding: 8px 12px;
+    }
+    
+    .footer-contact {
+      font-size: 11px;
     }
   }
 </style>
