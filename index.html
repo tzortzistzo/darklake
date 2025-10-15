@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>DARKLAKE</title>
 <link href="https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@400&display=swap" rel="stylesheet" />
-
-<!-- Favicon integration -->
 <link rel="icon" type="image/png" href="https://i.postimg.cc/4dtm4Pkt/logo.jpg" />
 
 <style>
@@ -105,7 +103,7 @@
     transform: translateX(-50%);
     z-index: 10;
     width: 100%;
-    max-width: 340px; /* Desktop default */
+    max-width: 340px;
   }
   
   @keyframes fadeInForm {
@@ -129,8 +127,7 @@
     width: 100%;
     text-align: center;
     white-space: nowrap;
-    padding: 0;
-    box-sizing: border-box;
+    padding: 0 10px;
   }
   
   form {
@@ -138,8 +135,7 @@
     gap: 10px;
     justify-content: center;
     width: 100%;
-    padding: 0;
-    box-sizing: border-box;
+    padding: 0 10px;
   }
   
   input[type="email"] {
@@ -177,7 +173,7 @@
     border-color: #555;
   }
   
-  /* Success message container - positioned absolutely relative to form container */
+  /* Success message container */
   .success-message {
     color: #777;
     font-size: 0.8rem;
@@ -231,7 +227,7 @@
     text-transform: uppercase;
   }
 
-  /* Fixed footer - restored to original monospace font matching the email input */
+  /* Fixed footer */
   .footer-contact {
     position: fixed;
     bottom: 10px;
@@ -262,104 +258,67 @@
     outline: none;
   }
 
-  /* Mobile and Tablet adjustments */
-  @media (max-width: 1024px) {
-    .form-container {
-      max-width: 380px;
-    }
-  }
-
+  /* Mobile adjustments - PERFECT ALIGNMENT */
   @media (max-width: 768px) {
-    /* PERFECT ALIGNMENT FOR TABLETS */
     .form-container {
-      max-width: 320px;
+      max-width: 300px;
       top: calc(40% + 70px);
     }
     
-    .aligned-container {
-      max-width: 100%;
-    }
-    
-    .access-text {
-      width: calc(100% - 24px); /* Match form width exactly */
-      margin: 0 auto 10px;
+    .access-text, form {
+      width: 100%;
       padding: 0;
     }
     
-    form {
-      width: calc(100% - 24px); /* Same width as text */
-      margin: 0 auto;
-      padding: 0;
-    }
-    
-    input[type="email"] {
-      max-width: none;
-      flex: 1;
-    }
-    
-    button {
-      width: 50px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    /* PERFECT ALIGNMENT FOR MOBILE */
-    h1 {
-      top: 38%;
-    }
-    
-    .form-container {
-      top: calc(38% + 70px);
-      max-width: 300px;
-    }
-    
     .access-text {
-      width: calc(100% - 20px); /* Exact same width as form */
-      font-size: 0.8rem;
-      letter-spacing: 0.9px; /* Slightly reduced for better fit */
+      font-size: 0.75rem;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
     }
     
     form {
-      width: calc(100% - 20px); /* Exact same width as text */
+      display: flex;
+      gap: 8px;
     }
     
     input[type="email"] {
       padding: 8px 12px;
+      font-size: 14px;
     }
     
     button {
       padding: 8px 14px;
+      width: 45px;
     }
   }
 
-  @media (min-width: 1200px) {
-    .form-container {
-      max-width: 360px;
-    }
-  }
-
-  /* Extra small mobile devices - PERFECT ALIGNMENT */
-  @media (max-width: 360px) {
+  @media (max-width: 480px) {
     .form-container {
       max-width: 280px;
     }
     
     .access-text {
-      width: calc(100% - 16px); /* Exact same width as form */
-      font-size: 0.75rem;
-      letter-spacing: 0.8px;
+      font-size: 0.7rem;
+      letter-spacing: 0.7px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .form-container {
+      max-width: 260px;
     }
     
-    form {
-      width: calc(100% - 16px); /* Exact same width as text */
+    .access-text {
+      font-size: 0.65rem;
+      letter-spacing: 0.6px;
     }
     
     input[type="email"] {
-      font-size: 14px;
+      padding: 6px 10px;
     }
     
     button {
-      font-size: 0.8rem;
+      padding: 6px 12px;
     }
   }
 </style>
