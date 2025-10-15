@@ -91,25 +91,24 @@
     color: #eee !important;
   }
 
-  /* Form container - PERFECT CENTER */
+  /* Form container - ORIGINAL POSITIONING */
   .form-container {
     text-align: center;
     opacity: 0;
     animation: fadeInForm 1.5s ease forwards;
     animation-delay: 6.5s;
     position: fixed;
-    top: 50%;
+    top: calc(40% + 80px); /* Original gap from DARKLAKE */
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     z-index: 10;
     width: 100%;
     max-width: 340px;
-    margin-top: 100px; /* Push below DARKLAKE text */
   }
   
   @keyframes fadeInForm {
-    from {opacity: 0; transform: translate(-50%, -50%) translateY(10px);}
-    to {opacity: 1; transform: translate(-50%, -50%) translateY(0);}
+    from {opacity: 0; transform: translateX(-50%) translateY(10px);}
+    to {opacity: 1; transform: translateX(-50%) translateY(0);}
   }
   
   .aligned-container {
@@ -117,10 +116,9 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    justify-content: center;
   }
   
-  /* ACCESS THE BETA PROGRAM - perfectly centered */
+  /* ACCESS THE BETA PROGRAM - perfectly aligned with form */
   .access-text {
     color: #777777;
     font-size: 0.8rem;
@@ -129,7 +127,7 @@
     width: 100%;
     text-align: center;
     white-space: nowrap;
-    padding: 0;
+    padding: 0 10px;
   }
   
   form {
@@ -137,7 +135,7 @@
     gap: 10px;
     justify-content: center;
     width: 100%;
-    padding: 0;
+    padding: 0 10px;
   }
   
   input[type="email"] {
@@ -188,9 +186,8 @@
     display: none;
     position: absolute;
     top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
+    left: 0;
+    right: 0;
     height: 60px;
     margin-top: 12px;
   }
@@ -232,10 +229,10 @@
     text-transform: uppercase;
   }
 
-  /* Fixed footer - PERFECT CENTER */
+  /* Fixed footer */
   .footer-contact {
     position: fixed;
-    bottom: 20px;
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -249,7 +246,6 @@
     animation-delay: 6.5s;
     z-index: 10;
     white-space: nowrap;
-    width: 100%;
   }
   
   .footer-contact a {
@@ -264,36 +260,22 @@
     outline: none;
   }
 
-  /* Mobile adjustments - PERFECT CENTER ALIGNMENT */
+  /* Mobile adjustments - PERFECT ALIGNMENT WITH ORIGINAL GAP */
   @media (max-width: 768px) {
-    h1 {
-      top: 35% !important; /* Adjusted for better mobile centering */
-    }
-    
     .form-container {
       max-width: 320px;
-      margin-top: 120px; /* Adjusted spacing for mobile */
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    
-    .aligned-container {
-      width: 100%;
-      align-items: center;
-      justify-content: center;
+      top: calc(40% + 70px); /* Original mobile gap */
     }
     
     .access-text, form {
       width: 100%;
-      padding: 0;
-      text-align: center;
+      padding: 0 10px;
     }
     
     .access-text {
       font-size: 0.8rem;
       letter-spacing: 1px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     
     /* Ensure all success message text has same size */
@@ -307,33 +289,27 @@
     form {
       display: flex;
       gap: 10px;
-      justify-content: center;
     }
     
     input[type="email"] {
-      padding: 12px 14px;
+      padding: 10px 14px;
       font-size: 16px;
     }
     
     button {
-      padding: 12px 16px;
+      padding: 10px 16px;
       width: 50px;
-    }
-    
-    .footer-contact {
-      bottom: 15px;
-      font-size: 13px;
     }
   }
 
   @media (max-width: 480px) {
     h1 {
-      top: 32% !important;
+      top: 38%; /* Original mobile positioning */
     }
     
     .form-container {
       max-width: 300px;
-      margin-top: 130px;
+      top: calc(38% + 70px); /* Original mobile gap */
     }
     
     .access-text {
@@ -342,46 +318,31 @@
     }
     
     input[type="email"] {
-      padding: 10px 12px;
-      font-size: 16px;
+      padding: 8px 12px;
     }
     
     button {
-      padding: 10px 14px;
-    }
-    
-    .footer-contact {
-      bottom: 10px;
-      font-size: 12px;
+      padding: 8px 14px;
     }
   }
 
   @media (max-width: 360px) {
-    h1 {
-      top: 30% !important;
-    }
-    
     .form-container {
       max-width: 280px;
-      margin-top: 140px;
     }
     
     .access-text {
       font-size: 0.75rem;
-      letter-spacing: 0.9px;
+      letter-spacing: 0.8px;
     }
     
     input[type="email"] {
-      padding: 8px 10px;
+      padding: 6px 10px;
       font-size: 14px;
     }
     
     button {
-      padding: 8px 12px;
-    }
-    
-    .footer-contact {
-      font-size: 11px;
+      padding: 6px 12px;
     }
   }
 </style>
