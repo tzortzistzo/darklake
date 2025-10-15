@@ -105,7 +105,7 @@
     transform: translateX(-50%);
     z-index: 10;
     width: 100%;
-    max-width: 340px;
+    max-width: 340px; /* Desktop default */
   }
   
   @keyframes fadeInForm {
@@ -225,15 +225,15 @@
     text-transform: uppercase;
   }
 
-  /* Fixed footer - properly centered at the bottom */
+  /* Fixed footer - restored to original monospace font matching the email input */
   .footer-contact {
     position: fixed;
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    font-family: monospace;
-    font-size: 14px;
+    font-family: monospace; /* Restored to monospace */
+    font-size: 14px; /* Restored to original size */
     color: #777777;
     user-select: text;
     pointer-events: auto;
@@ -242,6 +242,7 @@
     animation-delay: 6.5s;
     z-index: 10;
     white-space: nowrap;
+    /* Removed text-transform: lowercase and letter-spacing to match original */
   }
   
   .footer-contact a {
@@ -256,25 +257,84 @@
     outline: none;
   }
 
-  /* Mobile adjustments */
-  @media (max-width: 768px) {
+  /* Mobile and Tablet adjustments */
+  @media (max-width: 1024px) {
+    /* For tablets and smaller desktops */
     .form-container {
-      max-width: 90%;
+      max-width: 380px; /* Slightly wider for tablets */
+    }
+  }
+
+  @media (max-width: 768px) {
+    /* For tablets and large phones */
+    .form-container {
+      max-width: 320px; /* Match the width of "ACCESS THE BETA PROGRAM" text */
       top: calc(40% + 70px);
     }
     
     .aligned-container {
       max-width: 100%;
     }
+    
+    form {
+      width: auto; /* Let form size naturally to content */
+      min-width: 280px; /* Minimum width to ensure readability */
+    }
+    
+    input[type="email"] {
+      max-width: 200px; /* Limit email input width */
+    }
   }
 
   @media (max-width: 480px) {
+    /* For mobile phones */
     h1 {
       top: 38%;
     }
     
     .form-container {
       top: calc(38% + 70px);
+      max-width: 300px; /* Slightly smaller for mobile */
+    }
+    
+    form {
+      min-width: 260px; /* Adjust minimum width for mobile */
+    }
+    
+    input[type="email"] {
+      max-width: 180px; /* Further limit email input on small screens */
+      padding: 8px 12px; /* Slightly smaller padding on mobile */
+    }
+    
+    button {
+      padding: 8px 14px; /* Slightly smaller padding on mobile */
+    }
+  }
+
+  @media (min-width: 1200px) {
+    /* For large desktops and TVs */
+    .form-container {
+      max-width: 360px; /* Slightly wider for large screens */
+    }
+  }
+
+  /* Extra small mobile devices */
+  @media (max-width: 360px) {
+    .form-container {
+      max-width: 280px;
+    }
+    
+    form {
+      min-width: 240px;
+    }
+    
+    input[type="email"] {
+      max-width: 160px;
+      font-size: 14px; /* Smaller font for very small screens */
+    }
+    
+    button {
+      font-size: 0.8rem;
     }
   }
 </style>
@@ -449,7 +509,6 @@
           window.location.href = 'https://www.google.com';
         }
       }, 1000);
-    });
   }
 </script>
 
