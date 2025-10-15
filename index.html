@@ -23,10 +23,12 @@
   body {
     background-color: #000;
     font-family: 'Lexend Zetta', sans-serif;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
     text-align: center;
     min-height: 100vh;
-    padding-bottom: 40px;
     position: relative;
   }
   input, textarea, select {
@@ -34,9 +36,20 @@
     -webkit-text-size-adjust: 100%;
   }
   
-  /* DARKLAKE stays in original position but fixed */
+  /* Main container to center everything */
+  .centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
+  
+  /* DARKLAKE text - perfectly centered */
   h1 {
-    font-size: clamp(2rem,8vw,6rem);
+    font-size: clamp(2rem, 8vw, 6rem);
     letter-spacing: 6px;
     opacity: 0;
     transform: scale(0.98);
@@ -44,13 +57,11 @@
     color: #505050;
     transition: color 1s ease;
     white-space: nowrap;
-    position: fixed;
-    top: 40%; /* Original position */
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.98);
-    z-index: 10;
+    text-align: center;
     margin: 0;
     padding: 0;
+    position: relative;
+    z-index: 10;
   }
   
   h1 span {
@@ -60,15 +71,18 @@
     transition: color 1s ease, opacity 0.3s ease;
     opacity: 1;
   }
+  
   @keyframes revealOpacity {
-    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.98); }
-    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    0% { opacity: 0; transform: scale(0.98); }
+    100% { opacity: 1; transform: scale(1); }
   }
+  
   @keyframes glint {
     0% { color: #505050; }
     50% { color: #fff; }
     100% { color: #505050; }
   }
+  
   h1 span:nth-child(1) { animation-delay: 3s; }
   h1 span:nth-child(2) { animation-delay: 3.2s; }
   h1 span:nth-child(3) { animation-delay: 3.4s; }
@@ -81,28 +95,27 @@
   h1.white {
     color: #eee !important;
   }
+  
   h1.white span {
     color: #eee !important;
   }
 
-  /* Form container fixed in place - moved even closer to DARKLAKE */
+  /* Form container - perfectly centered */
   .form-container {
-    margin-top: 40px;
     text-align: center;
     opacity: 0;
     animation: fadeInForm 1.5s ease forwards;
     animation-delay: 6.5s;
-    position: fixed;
-    top: calc(40% + 65px); /* Reduced from 80px to 65px - juuust a bit closer */
-    left: 50%;
-    transform: translate(-50%, 0);
+    position: relative;
     z-index: 10;
     width: 100%;
     max-width: 340px;
+    margin-top: 30px;
   }
+  
   @keyframes fadeInForm {
-    from {opacity: 0; transform: translate(-50%, 0) translateY(10px);}
-    to {opacity: 1; transform: translate(-50%, 0) translateY(0);}
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
   }
   
   .aligned-container {
@@ -110,7 +123,6 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 340px;
   }
   
   .access-text {
@@ -129,6 +141,7 @@
     justify-content: center;
     width: 100%;
   }
+  
   input[type="email"] {
     padding: 10px 14px;
     background: transparent;
@@ -140,10 +153,12 @@
     flex: 1;
     min-width: 0;
   }
+  
   input::placeholder {
     color: #555;
     font-size: 12px;
   }
+  
   button {
     padding: 10px 16px;
     background: #111;
@@ -155,12 +170,13 @@
     transition: all 0.2s ease;
     flex-shrink: 0;
   }
+  
   button:hover {
     color: #fff;
     border-color: #555;
   }
   
-  /* Success message container - positioned absolutely and won't affect layout */
+  /* Success message container */
   .success-message {
     color: #777;
     font-size: 0.8rem;
@@ -207,20 +223,19 @@
   
   #redirecting-container {
     font-family: inherit;
-    font-size: 0.8rem; /* Fixed to match ACCESS THE BETA PROGRAM size */
+    font-size: 0.8rem;
     color: #777;
     letter-spacing: 1px;
     user-select: none;
-    text-transform: uppercase; /* Make redirecting text capital */
+    text-transform: uppercase;
   }
 
   /* Fixed footer - properly centered */
   .footer-contact {
     position: fixed;
     bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto;
+    left: 0;
+    right: 0;
     text-align: center;
     font-family: monospace;
     font-size: 14px;
@@ -233,40 +248,55 @@
     z-index: 10;
     white-space: nowrap;
   }
+  
   .footer-contact a {
     color: inherit;
     text-decoration: none;
     transition: color 0.3s ease;
   }
+  
   .footer-contact a:hover,
   .footer-contact a:focus {
     color: #eee;
     outline: none;
   }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .form-container {
+      max-width: 90%;
+    }
+    
+    .aligned-container {
+      max-width: 100%;
+    }
+  }
 </style>
 </head>
 <body>
 
-<h1 id="darklake">
-  <span>D</span><span>A</span><span>R</span><span>K</span><span>L</span><span>A</span><span>K</span><span>E</span>
-</h1>
+<div class="centered-container">
+  <h1 id="darklake">
+    <span>D</span><span>A</span><span>R</span><span>K</span><span>L</span><span>A</span><span>K</span><span>E</span>
+  </h1>
 
-<div class="form-container" id="form-container">
-  <div class="aligned-container">
-    <p class="access-text">ACCESS THE BETA PROGRAM</p>
-    <form id="betaForm" method="POST" novalidate>
-      <input type="email" name="email" placeholder="enter your email" required />
-      <button type="submit">&gt;</button>
-    </form>
-    <div class="success-message" id="successMessage">
-      <div id="received-container" class="message-container">
-        <span id="received" class="matrix-line"></span>
-      </div>
-      <div id="enjoy-container" class="message-container">
-        <span id="enjoy" class="matrix-line"></span>
-      </div>
-      <div id="redirecting-container" class="message-container">
-        <span id="redirecting-text"></span> <span id="countdown">5</span>
+  <div class="form-container" id="form-container">
+    <div class="aligned-container">
+      <p class="access-text">ACCESS THE BETA PROGRAM</p>
+      <form id="betaForm" method="POST" novalidate>
+        <input type="email" name="email" placeholder="enter your email" required />
+        <button type="submit">&gt;</button>
+      </form>
+      <div class="success-message" id="successMessage">
+        <div id="received-container" class="message-container">
+          <span id="received" class="matrix-line"></span>
+        </div>
+        <div id="enjoy-container" class="message-container">
+          <span id="enjoy" class="matrix-line"></span>
+        </div>
+        <div id="redirecting-container" class="message-container">
+          <span id="redirecting-text"></span> <span id="countdown">5</span>
+        </div>
       </div>
     </div>
   </div>
@@ -404,7 +434,6 @@
   }
 
   function startRedirecting() {
-    // Changed to "REDIRECTING" in capital letters
     animateMatrixText("REDIRECTING", redirectingTextSpan, () => {
       let count = 5;
       countdownSpan.textContent = count;
