@@ -121,7 +121,7 @@
   /* ACCESS THE BETA PROGRAM - perfectly aligned with form */
   .access-text {
     color: #777777;
-    font-size: 0.8rem;
+    font-size: 0.8rem; /* Consistent font size */
     letter-spacing: 1px;
     margin-bottom: 10px;
     width: 100%;
@@ -173,10 +173,10 @@
     border-color: #555;
   }
   
-  /* Success message container */
+  /* Success message container - ALL TEXT SAME SIZE */
   .success-message {
     color: #777;
-    font-size: 0.8rem;
+    font-size: 0.8rem; /* Same as access-text */
     letter-spacing: 1px;
     text-align: center;
     flex-direction: column;
@@ -200,6 +200,7 @@
     text-align: center;
     opacity: 0;
     transition: opacity 0.3s ease;
+    font-size: 0.8rem; /* Ensure consistent size */
   }
   
   .message-container.active {
@@ -211,6 +212,7 @@
     justify-content: center;
     flex-wrap: nowrap;
     margin: 0;
+    font-size: 0.8rem; /* Consistent size */
   }
   
   .matrix-letter {
@@ -220,7 +222,7 @@
   
   #redirecting-container {
     font-family: inherit;
-    font-size: 0.8rem;
+    font-size: 0.8rem; /* Same size */
     color: #777;
     letter-spacing: 1px;
     user-select: none;
@@ -258,7 +260,7 @@
     outline: none;
   }
 
-  /* Mobile adjustments - PERFECT ALIGNMENT */
+  /* Mobile adjustments - PERFECT ALIGNMENT & CONSISTENT FONT SIZE */
   @media (max-width: 768px) {
     .form-container {
       max-width: 300px;
@@ -271,9 +273,17 @@
     }
     
     .access-text {
-      font-size: 0.75rem;
+      font-size: 0.8rem; /* Same size as desktop */
       letter-spacing: 0.8px;
       margin-bottom: 8px;
+    }
+    
+    /* Ensure all success message text has same size */
+    .success-message,
+    .message-container,
+    .matrix-line,
+    #redirecting-container {
+      font-size: 0.8rem !important; /* Force same size */
     }
     
     form {
@@ -298,8 +308,16 @@
     }
     
     .access-text {
-      font-size: 0.7rem;
+      font-size: 0.8rem; /* Keep same size */
       letter-spacing: 0.7px;
+    }
+    
+    /* Ensure all success message text has same size */
+    .success-message,
+    .message-container,
+    .matrix-line,
+    #redirecting-container {
+      font-size: 0.8rem !important; /* Force same size */
     }
   }
 
@@ -309,8 +327,16 @@
     }
     
     .access-text {
-      font-size: 0.65rem;
+      font-size: 0.8rem; /* Keep same size */
       letter-spacing: 0.6px;
+    }
+    
+    /* Ensure all success message text has same size */
+    .success-message,
+    .message-container,
+    .matrix-line,
+    #redirecting-container {
+      font-size: 0.8rem !important; /* Force same size */
     }
     
     input[type="email"] {
