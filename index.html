@@ -194,17 +194,19 @@
   });
 
   window.addEventListener('load', () => {
+    // At 7100ms remove animations and clear inline colors for smooth transition
     setTimeout(() => {
       darklake.querySelectorAll('span').forEach(span => {
         span.style.animation = 'none';
-        span.style.color = '#505050';
+        span.style.color = '';
         span.style.opacity = '1';
       });
-    }, 7500);
+    }, 7100);
+
+    // Slightly after, at 7200ms, add white class to trigger smooth CSS transition
     setTimeout(() => {
-      // Smooth transition by adding class, not inline style
       darklake.classList.add('white');
-    }, 7900);
+    }, 7200);
   });
 
   form.addEventListener('submit', async (e) => {
