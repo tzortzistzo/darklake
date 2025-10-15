@@ -105,7 +105,7 @@
     transform: translateX(-50%);
     z-index: 10;
     width: 100%;
-    max-width: 340px;
+    max-width: 340px; /* Desktop default */
   }
   
   @keyframes fadeInForm {
@@ -120,6 +120,7 @@
     width: 100%;
   }
   
+  /* ACCESS THE BETA PROGRAM - perfectly aligned with form */
   .access-text {
     color: #777777;
     font-size: 0.8rem;
@@ -128,6 +129,8 @@
     width: 100%;
     text-align: center;
     white-space: nowrap;
+    padding: 0 10px; /* Match form horizontal padding */
+    box-sizing: border-box; /* Ensure padding is included in width */
   }
   
   form {
@@ -135,6 +138,8 @@
     gap: 10px;
     justify-content: center;
     width: 100%;
+    padding: 0 10px; /* Added padding to match access-text */
+    box-sizing: border-box; /* Ensure padding is included in width */
   }
   
   input[type="email"] {
@@ -164,6 +169,7 @@
     letter-spacing: 0.5px;
     transition: all 0.2s ease;
     flex-shrink: 0;
+    width: 50px; /* Fixed width for consistent alignment */
   }
   
   button:hover {
@@ -225,15 +231,15 @@
     text-transform: uppercase;
   }
 
-  /* Fixed footer - properly centered at the bottom */
+  /* Fixed footer - restored to original monospace font matching the email input */
   .footer-contact {
     position: fixed;
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    font-family: monospace;
-    font-size: 14px;
+    font-family: monospace; /* Restored to monospace */
+    font-size: 14px; /* Restored to original size */
     color: #777777;
     user-select: text;
     pointer-events: auto;
@@ -242,6 +248,7 @@
     animation-delay: 6.5s;
     z-index: 10;
     white-space: nowrap;
+    /* Removed text-transform: lowercase and letter-spacing to match original */
   }
   
   .footer-contact a {
@@ -256,25 +263,104 @@
     outline: none;
   }
 
-  /* Mobile adjustments */
-  @media (max-width: 768px) {
+  /* Mobile and Tablet adjustments */
+  @media (max-width: 1024px) {
+    /* For tablets and smaller desktops */
     .form-container {
-      max-width: 90%;
+      max-width: 380px; /* Slightly wider for tablets */
+    }
+    
+    .access-text, form {
+      padding: 0 15px; /* Slightly more padding for tablets */
+    }
+  }
+
+  @media (max-width: 768px) {
+    /* For tablets and large phones */
+    .form-container {
+      max-width: 320px; /* Match the width of "ACCESS THE BETA PROGRAM" text */
       top: calc(40% + 70px);
     }
     
     .aligned-container {
       max-width: 100%;
     }
+    
+    .access-text, form {
+      padding: 0 12px; /* Adjusted padding for mobile */
+    }
+    
+    form {
+      width: 100%; /* Full width of container */
+      min-width: auto; /* Remove minimum width */
+    }
+    
+    input[type="email"] {
+      max-width: none; /* Remove max-width restriction */
+      flex: 1; /* Allow to grow naturally */
+    }
+    
+    button {
+      width: 50px; /* Keep consistent button width */
+    }
   }
 
   @media (max-width: 480px) {
+    /* For mobile phones */
     h1 {
       top: 38%;
     }
     
     .form-container {
       top: calc(38% + 70px);
+      max-width: 300px; /* Slightly smaller for mobile */
+    }
+    
+    .access-text, form {
+      padding: 0 10px; /* Consistent padding */
+    }
+    
+    input[type="email"] {
+      padding: 8px 12px; /* Slightly smaller padding on mobile */
+    }
+    
+    button {
+      padding: 8px 14px; /* Slightly smaller padding on mobile */
+    }
+  }
+
+  @media (min-width: 1200px) {
+    /* For large desktops and TVs */
+    .form-container {
+      max-width: 360px; /* Slightly wider for large screens */
+    }
+    
+    .access-text, form {
+      padding: 0 12px; /* Consistent padding for large screens */
+    }
+  }
+
+  /* Extra small mobile devices */
+  @media (max-width: 360px) {
+    .form-container {
+      max-width: 280px;
+    }
+    
+    .access-text, form {
+      padding: 0 8px; /* Smaller padding for very small screens */
+    }
+    
+    .access-text {
+      font-size: 0.75rem; /* Slightly smaller text for very small screens */
+    }
+    
+    input[type="email"] {
+      max-width: none;
+      font-size: 14px; /* Smaller font for very small screens */
+    }
+    
+    button {
+      font-size: 0.8rem;
     }
   }
 </style>
