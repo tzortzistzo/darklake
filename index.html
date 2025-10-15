@@ -26,12 +26,15 @@
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     text-align: center;
     min-height: 100vh;
-    padding-bottom: 40px; /* space for footer */
+    padding-bottom: 40px;
+    position: relative;
   }
   input, textarea, select {
     font-size: 16px;
     -webkit-text-size-adjust: 100%;
   }
+  
+  /* DARKLAKE stays in original position but fixed */
   h1 {
     font-size: clamp(2rem,8vw,6rem);
     letter-spacing: 6px;
@@ -41,7 +44,15 @@
     color: #505050;
     transition: color 1s ease;
     white-space: nowrap;
+    position: fixed;
+    top: 40%; /* Original position */
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.98);
+    z-index: 10;
+    margin: 0;
+    padding: 0;
   }
+  
   h1 span {
     display: inline-block;
     color: #505050;
@@ -50,8 +61,8 @@
     opacity: 1;
   }
   @keyframes revealOpacity {
-    0% { opacity: 0; transform: scale(0.98); }
-    100% { opacity: 1; transform: scale(1); }
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.98); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   }
   @keyframes glint {
     0% { color: #505050; }
@@ -67,7 +78,6 @@
   h1 span:nth-child(7) { animation-delay: 4.2s; }
   h1 span:nth-child(8) { animation-delay: 4.4s; }
 
-  /* New CSS class for smooth white transition */
   h1.white {
     color: #eee !important;
   }
@@ -75,25 +85,32 @@
     color: #eee !important;
   }
 
+  /* Form container fixed in place - moved even closer to DARKLAKE */
   .form-container {
     margin-top: 40px;
     text-align: center;
     opacity: 0;
     animation: fadeInForm 1.5s ease forwards;
     animation-delay: 6.5s;
+    position: fixed;
+    top: calc(40% + 65px); /* Reduced from 80px to 65px - juuust a bit closer */
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 10;
+    width: 100%;
+    max-width: 340px;
   }
   @keyframes fadeInForm {
-    from {opacity: 0; transform: translateY(10px);}
-    to {opacity: 1; transform: translateY(0);}
+    from {opacity: 0; transform: translate(-50%, 0) translateY(10px);}
+    to {opacity: 1; transform: translate(-50%, 0) translateY(0);}
   }
   
-  /* Updated styles for the aligned container */
   .aligned-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 340px; /* Matches the width of the form */
+    max-width: 340px;
   }
   
   .access-text {
@@ -143,12 +160,11 @@
     border-color: #555;
   }
   
-  /* Fixed success message container */
+  /* Success message container - positioned absolutely and won't affect layout */
   .success-message {
     color: #777;
     font-size: 0.8rem;
     letter-spacing: 1px;
-    margin-top: 12px;
     text-align: center;
     flex-direction: column;
     align-items: center;
@@ -159,7 +175,8 @@
     top: 100%;
     left: 0;
     right: 0;
-    height: 60px; /* Fixed height to prevent layout shifts */
+    height: 60px;
+    margin-top: 12px;
   }
   
   .message-container {
@@ -190,17 +207,20 @@
   
   #redirecting-container {
     font-family: inherit;
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* Fixed to match ACCESS THE BETA PROGRAM size */
     color: #777;
     letter-spacing: 1px;
     user-select: none;
+    text-transform: uppercase; /* Make redirecting text capital */
   }
 
-  /* Footer with email contact */
+  /* Fixed footer - properly centered */
   .footer-contact {
     position: fixed;
     bottom: 10px;
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
     text-align: center;
     font-family: monospace;
     font-size: 14px;
@@ -210,6 +230,8 @@
     opacity: 0;
     animation: fadeInForm 1.5s ease forwards;
     animation-delay: 6.5s;
+    z-index: 10;
+    white-space: nowrap;
   }
   .footer-contact a {
     color: inherit;
@@ -250,7 +272,6 @@
   </div>
 </div>
 
-<!-- Footer email contact -->
 <div class="footer-contact">
   <a href="mailto:hello@darklake.cc" aria-label="Email contact hello@darklake.cc">hello@darklake.cc</a>
 </div>
@@ -303,7 +324,6 @@
         form.style.display = 'none';
         successMessage.style.display = 'flex';
         
-        // Start the message sequence
         startMessageSequence();
       } else {
         alert("Failed to submit the form. Please try again.");
@@ -314,14 +334,11 @@
   });
 
   function startMessageSequence() {
-    // Show "RECEIVED." with typewriter effect
     receivedContainer.classList.add('active');
     animateMatrixText("RECEIVED.", receivedSpan, () => {
-      // Wait 3 seconds, then erase with typewriter effect
       setTimeout(() => {
         eraseMatrixText(receivedSpan, () => {
           receivedContainer.classList.remove('active');
-          // After erasing, show the day/night message
           const now = new Date();
           const hour = now.getHours();
           let message = "ENJOY YOUR DAY.";
@@ -332,11 +349,9 @@
 
           enjoyContainer.classList.add('active');
           animateMatrixText(message, enjoySpan, () => {
-            // Wait 3 seconds, then erase with typewriter effect
             setTimeout(() => {
               eraseMatrixText(enjoySpan, () => {
                 enjoyContainer.classList.remove('active');
-                // After erasing, show redirecting with countdown
                 redirectingContainer.classList.add('active');
                 startRedirecting();
               });
@@ -389,7 +404,8 @@
   }
 
   function startRedirecting() {
-    animateMatrixText("Redirecting", redirectingTextSpan, () => {
+    // Changed to "REDIRECTING" in capital letters
+    animateMatrixText("REDIRECTING", redirectingTextSpan, () => {
       let count = 5;
       countdownSpan.textContent = count;
       const countdownInterval = setInterval(() => {
