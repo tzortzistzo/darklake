@@ -120,6 +120,7 @@
     width: 100%;
   }
   
+  /* ACCESS THE BETA PROGRAM - perfectly aligned with form */
   .access-text {
     color: #777777;
     font-size: 0.8rem;
@@ -128,6 +129,7 @@
     width: 100%;
     text-align: center;
     white-space: nowrap;
+    padding: 0 10px; /* Match form horizontal padding */
   }
   
   form {
@@ -135,6 +137,7 @@
     gap: 10px;
     justify-content: center;
     width: 100%;
+    padding: 0 10px; /* Added padding to match access-text */
   }
   
   input[type="email"] {
@@ -164,6 +167,7 @@
     letter-spacing: 0.5px;
     transition: all 0.2s ease;
     flex-shrink: 0;
+    width: 50px; /* Fixed width for consistent alignment */
   }
   
   button:hover {
@@ -263,6 +267,10 @@
     .form-container {
       max-width: 380px; /* Slightly wider for tablets */
     }
+    
+    .access-text, form {
+      padding: 0 15px; /* Slightly more padding for tablets */
+    }
   }
 
   @media (max-width: 768px) {
@@ -276,13 +284,22 @@
       max-width: 100%;
     }
     
+    .access-text, form {
+      padding: 0 12px; /* Adjusted padding for mobile */
+    }
+    
     form {
-      width: auto; /* Let form size naturally to content */
-      min-width: 280px; /* Minimum width to ensure readability */
+      width: 100%; /* Full width of container */
+      min-width: auto; /* Remove minimum width */
     }
     
     input[type="email"] {
-      max-width: 200px; /* Limit email input width */
+      max-width: none; /* Remove max-width restriction */
+      flex: 1; /* Allow to grow naturally */
+    }
+    
+    button {
+      width: 50px; /* Keep consistent button width */
     }
   }
 
@@ -297,12 +314,11 @@
       max-width: 300px; /* Slightly smaller for mobile */
     }
     
-    form {
-      min-width: 260px; /* Adjust minimum width for mobile */
+    .access-text, form {
+      padding: 0 10px; /* Consistent padding */
     }
     
     input[type="email"] {
-      max-width: 180px; /* Further limit email input on small screens */
       padding: 8px 12px; /* Slightly smaller padding on mobile */
     }
     
@@ -316,6 +332,10 @@
     .form-container {
       max-width: 360px; /* Slightly wider for large screens */
     }
+    
+    .access-text, form {
+      padding: 0 12px; /* Consistent padding for large screens */
+    }
   }
 
   /* Extra small mobile devices */
@@ -324,12 +344,16 @@
       max-width: 280px;
     }
     
-    form {
-      min-width: 240px;
+    .access-text, form {
+      padding: 0 8px; /* Smaller padding for very small screens */
+    }
+    
+    .access-text {
+      font-size: 0.75rem; /* Slightly smaller text for very small screens */
     }
     
     input[type="email"] {
-      max-width: 160px;
+      max-width: none;
       font-size: 14px; /* Smaller font for very small screens */
     }
     
@@ -509,6 +533,7 @@
           window.location.href = 'https://www.google.com';
         }
       }, 1000);
+    });
   }
 </script>
 
