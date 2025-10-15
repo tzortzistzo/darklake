@@ -276,7 +276,7 @@
   }
 
   @media (max-width: 768px) {
-    /* For tablets and large phones */
+    /* For tablets and large phones - FIXED ALIGNMENT */
     .form-container {
       max-width: 320px; /* Match the width of "ACCESS THE BETA PROGRAM" text */
       top: calc(40% + 70px);
@@ -284,29 +284,38 @@
     
     .aligned-container {
       max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     
-    .access-text, form {
-      padding: 0 12px; /* Adjusted padding for mobile */
+    .access-text {
+      width: 100%;
+      padding: 0 12px;
+      text-align: center;
+      white-space: nowrap;
+      box-sizing: border-box;
     }
     
     form {
-      width: 100%; /* Full width of container */
-      min-width: auto; /* Remove minimum width */
+      width: 100%;
+      padding: 0 12px;
+      min-width: auto;
+      box-sizing: border-box;
     }
     
     input[type="email"] {
-      max-width: none; /* Remove max-width restriction */
-      flex: 1; /* Allow to grow naturally */
+      max-width: none;
+      flex: 1;
     }
     
     button {
-      width: 50px; /* Keep consistent button width */
+      width: 50px;
     }
   }
 
   @media (max-width: 480px) {
-    /* For mobile phones */
+    /* For mobile phones - PERFECT CENTER ALIGNMENT */
     h1 {
       top: 38%;
     }
@@ -318,6 +327,11 @@
     
     .access-text, form {
       padding: 0 10px; /* Consistent padding */
+    }
+    
+    .access-text {
+      font-size: 0.8rem;
+      letter-spacing: 1px;
     }
     
     input[type="email"] {
@@ -340,7 +354,7 @@
     }
   }
 
-  /* Extra small mobile devices */
+  /* Extra small mobile devices - PERFECT CENTER ALIGNMENT */
   @media (max-width: 360px) {
     .form-container {
       max-width: 280px;
@@ -352,6 +366,7 @@
     
     .access-text {
       font-size: 0.75rem; /* Slightly smaller text for very small screens */
+      letter-spacing: 0.8px; /* Slightly reduced letter spacing */
     }
     
     input[type="email"] {
@@ -535,7 +550,7 @@
           window.location.href = 'https://www.google.com';
         }
       }, 1000);
-    });
+  });
   }
 </script>
 
