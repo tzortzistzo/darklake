@@ -38,7 +38,7 @@
   .logo {
     opacity: 0;
     position: fixed;
-    top: calc(40% - 160px); /* Increased offset by 20px for slightly more space */
+    top: calc(40% - 135px); /* Moved up by 5px for slightly more space */
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -47,6 +47,8 @@
     height: auto;
     transition: opacity 1s ease;
     filter: grayscale(100%) brightness(150%) contrast(200%); /* Ensures wave design appears white */
+    user-select: none; /* Prevent selection */
+    pointer-events: none; /* Prevent interaction */
   }
   
   .logo.visible {
@@ -71,6 +73,8 @@
     transform: translate(-50%, -50%);
     z-index: 10;
     width: 100%;
+    user-select: none; /* Prevent selection */
+    pointer-events: none; /* Prevent interaction */
   }
   
   h1 span {
@@ -295,7 +299,7 @@
   @media (max-width: 768px) {
     .logo {
       max-width: 140px; /* Smaller logo on mobile */
-      top: calc(40% - 140px); /* Adjusted by 20px for consistent spacing */
+      top: calc(40% - 115px); /* Adjusted by 5px to maintain gap */
     }
     .form-container {
       max-width: 320px;
@@ -333,7 +337,7 @@
   @media (max-width: 480px) {
     .logo {
       max-width: 110px;
-      top: calc(40% - 130px); /* Adjusted by 20px */
+      top: calc(40% - 105px); /* Adjusted by 5px to maintain gap */
     }
     .form-container {
       max-width: 300px;
@@ -364,7 +368,7 @@
   @media (max-width: 360px) {
     .logo {
       max-width: 90px;
-      top: calc(40% - 120px); /* Adjusted by 20px */
+      top: calc(40% - 95px); /* Adjusted by 5px to maintain gap */
     }
     .form-container {
       max-width: 280px;
