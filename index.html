@@ -34,6 +34,32 @@
     -webkit-text-size-adjust: 100%;
   }
   
+  /* Logo container - bigger and closer to text */
+  .logo-container {
+    position: fixed;
+    top: 32%; /* Moved closer to the text */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    opacity: 0;
+    animation: fadeInLogo 2s ease forwards;
+    animation-delay: 7.2s;
+    width: 180px; /* Bigger size */
+    height: 180px; /* Bigger size */
+  }
+  
+  .logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* Makes black lines white */
+  }
+  
+  @keyframes fadeInLogo {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
   /* DARKLAKE text - fixed position with proper transform */
   h1 {
     font-size: clamp(2rem, 8vw, 6rem);
@@ -274,6 +300,12 @@
 
   /* Mobile adjustments - maintain perfect alignment */
   @media (max-width: 768px) {
+    .logo-container {
+      width: 150px; /* Bigger on mobile too */
+      height: 150px;
+      top: 30%; /* Adjusted position for mobile */
+    }
+    
     .form-container {
       max-width: 320px;
       top: calc(40% + 70px);
@@ -308,6 +340,12 @@
   }
 
   @media (max-width: 480px) {
+    .logo-container {
+      width: 130px; /* Bigger on mobile too */
+      height: 130px;
+      top: 29%; /* Adjusted position for mobile */
+    }
+    
     .form-container {
       max-width: 300px;
     }
@@ -335,6 +373,12 @@
   }
 
   @media (max-width: 360px) {
+    .logo-container {
+      width: 120px; /* Bigger on mobile too */
+      height: 120px;
+      top: 28%; /* Adjusted position for mobile */
+    }
+    
     .form-container {
       max-width: 280px;
     }
@@ -369,6 +413,11 @@
 </style>
 </head>
 <body>
+
+<!-- Logo container -->
+<div class="logo-container">
+  <img src="https://i.postimg.cc/7ZCb6G6y/Adobe-Express-file.png" alt="Darklake Logo" class="logo" />
+</div>
 
 <h1 id="darklake">
   <span>D</span><span>A</span><span>R</span><span>K</span><span>L</span><span>A</span><span>K</span><span>E</span>
