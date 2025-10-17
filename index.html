@@ -795,7 +795,7 @@
 
 <div class="terms-page" id="terms-page">
   <div class="terms-container-inner" id="terms-container-inner">
-    <p class="intro-text">Some things beneath the surface are meant to stay quiet.</p>
+    <p class="intro-text">Some things beneath the surface<br>are meant to stay quiet.</p>
     <h1>Terms & Conditions</h1>
     <p>
       By submitting your email to DARKLAKE, you agree to the following:
@@ -927,7 +927,7 @@
       console.log('Terms flicker triggered');
     }
     // Check if email input is empty
-    if (!emailInput.value) {
+    if (!emailInput.value.trim()) {
       shouldFlickerEmail = true;
       console.log('Email flicker triggered');
     }
