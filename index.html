@@ -207,7 +207,7 @@
   }
   
   input[type="email"].flicker {
-    animation: flicker 0.2s ease-in-out 2;
+    animation: flicker 0.25s ease-in-out 2;
   }
   
   input::placeholder {
@@ -250,7 +250,7 @@
   
   .terms-container.flicker input[type="checkbox"],
   .terms-container.flicker label {
-    animation: flicker 0.2s ease-in-out 2;
+    animation: flicker 0.25s ease-in-out 2;
   }
   
   @keyframes flicker {
@@ -408,6 +408,17 @@
     top: 0;
     left: 0;
     z-index: 20;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  .terms-page a {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
   }
   
   .terms-container-inner {
@@ -419,7 +430,7 @@
     color: #c0c0c0;
     opacity: 0;
     animation: none;
-    margin-top: -8%;
+    margin-top: -5%;
     text-align: center;
   }
   
@@ -437,7 +448,7 @@
     font-style: italic;
     font-weight: normal;
     color: #eee;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     letter-spacing: 1px;
   }
   
@@ -557,25 +568,25 @@
       font-size: 0.75rem !important;
     }
     .terms-page .intro-text {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       margin-bottom: 2rem;
     }
     .terms-page h1 {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
     }
     .terms-container-inner {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       padding: 15px;
-      margin-top: -13%;
+      margin-top: -10%;
     }
     .terms-page ul li::before {
-      font-size: 0.7rem;
+      font-size: 0.6rem;
     }
     .back-link {
-      font-size: 0.75rem;
+      font-size: 0.65rem;
     }
     .back-link .arrow {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
     }
   }
 
@@ -621,25 +632,25 @@
       font-size: 0.7rem !important;
     }
     .terms-page .intro-text {
-      font-size: 0.8rem;
-      margin-bottom: 1.8rem;
+      font-size: 0.7rem;
+      margin-bottom: 2rem;
     }
     .terms-page h1 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
     .terms-container-inner {
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       padding: 12px;
-      margin-top: -18%;
+      margin-top: -15%;
     }
     .terms-page ul li::before {
-      font-size: 0.65rem;
+      font-size: 0.55rem;
     }
     .back-link {
-      font-size: 0.7rem;
+      font-size: 0.6rem;
     }
     .back-link .arrow {
-      font-size: 0.75rem;
+      font-size: 0.65rem;
     }
   }
 
@@ -690,25 +701,25 @@
       font-size: 0.65rem !important;
     }
     .terms-page .intro-text {
-      font-size: 0.75rem;
-      margin-bottom: 1.6rem;
+      font-size: 0.65rem;
+      margin-bottom: 2rem;
     }
     .terms-page h1 {
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
     .terms-container-inner {
-      font-size: 0.7rem;
+      font-size: 0.6rem;
       padding: 10px;
-      margin-top: -23%;
+      margin-top: -20%;
     }
     .terms-page ul li::before {
-      font-size: 0.6rem;
+      font-size: 0.5rem;
     }
     .back-link {
-      font-size: 0.65rem;
+      font-size: 0.55rem;
     }
     .back-link .arrow {
-      font-size: 0.7rem;
+      font-size: 0.6rem;
     }
   }
 
@@ -736,7 +747,7 @@
     }
     .terms-page .intro-text {
       font-size: 0.95rem;
-      margin-bottom: 2.2rem;
+      margin-bottom: 2rem;
     }
     .terms-page h1 {
       font-size: 1.4rem;
@@ -744,7 +755,7 @@
     .terms-container-inner {
       font-size: 0.85rem;
       padding: 18px;
-      margin-top: -10%;
+      margin-top: -7%;
     }
     .terms-page ul li::before {
       font-size: 0.75rem;
@@ -915,7 +926,8 @@
     }
   });
 
-  form.addEventListener('submit', async (e) => {
+  // Handle form submission for both click and touch
+  function handleSubmit(e) {
     e.preventDefault();
     let shouldFlickerEmail = false;
     let shouldFlickerTerms = false;
@@ -923,28 +935,28 @@
     // Check if terms checkbox is checked
     if (!termsCheckbox.checked) {
       shouldFlickerTerms = true;
+      console.log('Terms flicker triggered');
     }
     // Check if email input is empty
     if (!emailInput.value) {
       shouldFlickerEmail = true;
+      console.log('Email flicker triggered');
     }
 
     // Apply flicker animations if needed
     if (shouldFlickerEmail || shouldFlickerTerms) {
       if (shouldFlickerEmail) {
         emailInput.classList.add('flicker');
+        emailInput.addEventListener('animationend', () => {
+          emailInput.classList.remove('flicker');
+        }, { once: true });
       }
       if (shouldFlickerTerms) {
         termsContainer.classList.add('flicker');
-      }
-      setTimeout(() => {
-        if (shouldFlickerEmail) {
-          emailInput.classList.remove('flicker');
-        }
-        if (shouldFlickerTerms) {
+        termsContainer.addEventListener('animationend', () => {
           termsContainer.classList.remove('flicker');
-        }
-      }, 400); // 2 flickers × 200ms
+        }, { once: true });
+      }
       return;
     }
 
@@ -953,7 +965,7 @@
     const email = formData.get('email');
     
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -966,7 +978,7 @@
         })
       });
       
-      const result = await response.json();
+      const result = response.json();
       
       if (result.success) {
         form.style.display = 'none';
@@ -977,6 +989,14 @@
       }
     } catch (err) {
       alert("Error submitting form: " + err.message);
+    }
+  }
+
+  form.addEventListener('submit', handleSubmit);
+  form.addEventListener('touchstart', (e) => {
+    // Only trigger submit on button touch
+    if (e.target.tagName === 'BUTTON') {
+      handleSubmit(e);
     }
   });
 
