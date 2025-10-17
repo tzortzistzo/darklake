@@ -212,6 +212,16 @@
     animation: flicker 0.25s ease-in-out 2;
   }
   
+  input[type="email"].flicker::placeholder {
+    animation: flicker 0.25s ease-in-out 2;
+  }
+  
+  @keyframes flicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+  }
+  
   input::placeholder {
     color: #555;
     font-size: 12px;
@@ -253,12 +263,6 @@
   .terms-container.flicker input[type="checkbox"],
   .terms-container.flicker label {
     animation: flicker 0.25s ease-in-out 2;
-  }
-  
-  @keyframes flicker {
-    0% { opacity: 1; }
-    50% { opacity: 0.3; }
-    100% { opacity: 1; }
   }
   
   .terms-container input[type="checkbox"] {
@@ -531,6 +535,12 @@
       font-size: 14px;
       max-width: 260px;
     }
+    input[type="email"].flicker {
+      animation: flicker 0.25s ease-in-out 2;
+    }
+    input[type="email"].flicker::placeholder {
+      animation: flicker 0.25s ease-in-out 2;
+    }
     button {
       padding: 8px 14px;
       width: 45px;
@@ -599,6 +609,12 @@
     input[type="email"] {
       max-width: 240px;
     }
+    input[type="email"].flicker {
+      animation: flicker 0.25s ease-in-out 2;
+    }
+    input[type="email"].flicker::placeholder {
+      animation: flicker 0.25s ease-in-out 2;
+    }
     .access-text {
       font-size: 0.7rem;
       letter-spacing: 0.5px;
@@ -663,6 +679,12 @@
       padding: 6px 10px;
       font-size: 13px;
       max-width: 220px;
+    }
+    input[type="email"].flicker {
+      animation: flicker 0.25s ease-in-out 2;
+    }
+    input[type="email"].flicker::placeholder {
+      animation: flicker 0.25s ease-in-out 2;
     }
     button {
       padding: 6px 12px;
@@ -926,8 +948,10 @@
       shouldFlickerTerms = true;
       console.log('Terms flicker triggered');
     }
-    // Check if email input is empty
-    if (!emailInput.value.trim()) {
+    // Check if email input is empty or invalid
+    const emailValue = emailInput.value.trim();
+    const emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
+    if (!emailValue || !emailRegex.test(emailValue)) {
       shouldFlickerEmail = true;
       console.log('Email flicker triggered');
     }
@@ -958,22 +982,25 @@
     const formData = new FormData(form);
     const email = formData.get('email');
     
-    try {
-      const response = fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          access_key: '3480848b-a272-44e6-b341-64a54db183ae',
-          email: email,
-          subject: 'New Beta Program Signup - Darklake',
-          from_name: 'Darklake Website'
-        })
-      });
-      
-      const result = response.json();
-      
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        access_key: '3480848b-a272-44e6-b341-64a54db183ae',
+        email: email,
+        subject: 'New Beta Program Signup - Darklake',
+        from_name: 'Darklake Website'
+      })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(result => {
       if (result.success) {
         form.style.display = 'none';
         successMessage.style.display = 'flex';
@@ -981,9 +1008,10 @@
       } else {
         alert("Failed to submit the form. Please try again.");
       }
-    } catch (err) {
+    })
+    .catch(err => {
       alert("Error submitting form: " + err.message);
-    }
+    });
   }
 
   form.addEventListener('submit', handleSubmit);
@@ -1001,7 +1029,7 @@
         eraseMatrixText(receivedSpan, () => {
           receivedContainer.classList.remove('active');
           const now = new Date();
-          const hour = new Date().getHours();
+          const hour = now.getHours();
           let message = "ENJOY YOUR DAY.";
           if (hour >= 5 && hour < 12) message = "ENJOY YOUR MORNING.";
           else if (hour >= 12 && hour < 17) message = "ENJOY YOUR AFTERNOON.";
