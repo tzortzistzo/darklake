@@ -34,6 +34,25 @@
     -webkit-text-size-adjust: 100%;
   }
   
+  /* Main content container */
+  .main-content {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    animation: none;
+  }
+  
+  .main-content.active {
+    animation: fadeInTerms 1.5s ease forwards;
+  }
+  
   /* Logo styling */
   .logo {
     opacity: 0;
@@ -104,7 +123,7 @@
   h1 span:nth-child(6) { animation-delay: 4.0s; }
   h1 span:nth-child(7) { animation-delay: 4.2s; }
   h1 span:nth-child(8) { animation-delay: 4.4s; }
-
+  
   h1.white {
     color: #eee !important;
   }
@@ -156,12 +175,22 @@
   
   form {
     display: flex;
+    flex-direction: column;
     gap: 10px;
     justify-content: center;
     align-items: center;
     width: 100%;
     max-width: 340px;
     padding: 0;
+  }
+  
+  .email-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 340px;
   }
   
   input[type="email"] {
@@ -175,6 +204,10 @@
     flex: 1;
     min-width: 0;
     max-width: 280px;
+  }
+  
+  input[type="email"].flicker {
+    animation: flicker 0.2s ease-in-out 2;
   }
   
   input::placeholder {
@@ -198,6 +231,71 @@
   button:hover {
     color: #fff;
     border-color: #555;
+  }
+  
+  /* Terms and Conditions */
+  .terms-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    color: #777777;
+    font-size: 0.7rem;
+    letter-spacing: 0.8px;
+    width: 100%;
+    max-width: 340px;
+    font-family: monospace;
+    opacity: 0.8;
+  }
+  
+  .terms-container.flicker input[type="checkbox"],
+  .terms-container.flicker label {
+    animation: flicker 0.2s ease-in-out 2;
+  }
+  
+  @keyframes flicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+  }
+  
+  .terms-container input[type="checkbox"] {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    background: transparent;
+    border: 1px solid #333;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+  }
+  
+  .terms-container input[type="checkbox"]:checked::after {
+    content: 'X';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #c0c0c0;
+    font-size: 10px;
+  }
+  
+  .terms-container label {
+    color: #777777;
+    font-size: 0.7rem;
+    letter-spacing: 0.8px;
+  }
+  
+  .terms-container a {
+    color: #777777;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+  }
+  
+  .terms-container a:hover,
+  .terms-container a:focus {
+    color: #eee;
+    outline: none;
   }
   
   /* Success message container */
@@ -295,20 +393,137 @@
     outline: none;
   }
 
+  /* Terms page styling */
+  .terms-page {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    color: #777777;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+  }
+  
+  .terms-container-inner {
+    max-width: 800px;
+    padding: 20px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #c0c0c0;
+    opacity: 0;
+    animation: none;
+    margin-top: -8%;
+    text-align: center;
+  }
+  
+  .terms-container-inner.active {
+    animation: fadeInTerms 1.5s ease forwards;
+  }
+  
+  @keyframes fadeInTerms {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .terms-page .intro-text {
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: normal;
+    color: #eee;
+    margin-bottom: 3rem;
+    letter-spacing: 1px;
+  }
+  
+  .terms-page h1 {
+    font-size: 1.5rem;
+    color: #eee;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    position: static;
+    transform: none;
+    animation: none;
+  }
+  
+  .terms-page p {
+    margin-bottom: 15px;
+  }
+  
+  .terms-page ul {
+    list-style-type: none;
+    margin-bottom: 15px;
+    display: inline-block;
+    text-align: left;
+  }
+  
+  .terms-page ul li {
+    position: relative;
+    padding-left: 20px;
+  }
+  
+  .terms-page ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #c0c0c0;
+    font-size: 0.8rem;
+  }
+  
+  .terms-page a {
+    color: #777777;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+  }
+  
+  .terms-page a:hover,
+  .terms-page a:focus {
+    color: #eee;
+    outline: none;
+  }
+  
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    color: #aaa;
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    transition: color 0.2s ease;
+    margin-top: 20px;
+    cursor: pointer;
+    font-family: monospace;
+  }
+  
+  .back-link .arrow {
+    margin-right: 5px;
+    font-size: 0.9rem;
+  }
+  
+  .back-link:hover,
+  .back-link:focus {
+    color: #fff;
+  }
+
   /* Mobile adjustments - max-width: 768px */
   @media (max-width: 768px) {
     .logo {
       max-width: 140px;
-      top: calc(40% - 100px); /* Moved closer to Darklake text */
+      top: calc(40% - 100px);
     }
     h1 {
       top: 40%;
     }
     .form-container {
       max-width: 320px;
-      top: calc(40% + 50px); /* Moved slightly down from +40px */
+      top: calc(40% + 50px);
     }
-    form {
+    form, .email-container {
       max-width: 320px;
     }
     input[type="email"] {
@@ -325,11 +540,42 @@
       letter-spacing: 0.8px;
       margin-bottom: 8px;
     }
+    .terms-container {
+      font-size: 0.65rem;
+      letter-spacing: 0.7px;
+      margin-bottom: 8px;
+      max-width: 320px;
+    }
+    .terms-container input[type="checkbox"] {
+      width: 13px;
+      height: 13px;
+    }
     .success-message,
     .message-container,
     .matrix-line,
     #redirecting-container {
       font-size: 0.75rem !important;
+    }
+    .terms-page .intro-text {
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+    .terms-page h1 {
+      font-size: 1.3rem;
+    }
+    .terms-container-inner {
+      font-size: 0.8rem;
+      padding: 15px;
+      margin-top: -13%;
+    }
+    .terms-page ul li::before {
+      font-size: 0.7rem;
+    }
+    .back-link {
+      font-size: 0.75rem;
+    }
+    .back-link .arrow {
+      font-size: 0.8rem;
     }
   }
 
@@ -337,16 +583,16 @@
   @media (max-width: 480px) {
     .logo {
       max-width: 110px;
-      top: calc(40% - 90px); /* Moved closer to Darklake text */
+      top: calc(40% - 90px);
     }
     h1 {
       top: 40%;
     }
     .form-container {
       max-width: 300px;
-      top: calc(40% + 40px); /* Moved slightly down from +30px */
+      top: calc(40% + 40px);
     }
-    form {
+    form, .email-container {
       max-width: 300px;
       gap: 8px;
     }
@@ -358,11 +604,42 @@
       letter-spacing: 0.5px;
       margin-bottom: 6px;
     }
+    .terms-container {
+      font-size: 0.6rem;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      max-width: 300px;
+    }
+    .terms-container input[type="checkbox"] {
+      width: 12px;
+      height: 12px;
+    }
     .success-message,
     .message-container,
     .matrix-line,
     #redirecting-container {
       font-size: 0.7rem !important;
+    }
+    .terms-page .intro-text {
+      font-size: 0.8rem;
+      margin-bottom: 1.8rem;
+    }
+    .terms-page h1 {
+      font-size: 1.2rem;
+    }
+    .terms-container-inner {
+      font-size: 0.75rem;
+      padding: 12px;
+      margin-top: -18%;
+    }
+    .terms-page ul li::before {
+      font-size: 0.65rem;
+    }
+    .back-link {
+      font-size: 0.7rem;
+    }
+    .back-link .arrow {
+      font-size: 0.75rem;
     }
   }
 
@@ -370,16 +647,16 @@
   @media (max-width: 360px) {
     .logo {
       max-width: 90px;
-      top: calc(40% - 80px); /* Moved closer to Darklake text */
+      top: calc(40% - 80px);
     }
     h1 {
       top: 40%;
     }
     .form-container {
       max-width: 280px;
-      top: calc(40% + 30px); /* Moved slightly down from +20px */
+      top: calc(40% + 30px);
     }
-    form {
+    form, .email-container {
       max-width: 280px;
     }
     input[type="email"] {
@@ -396,11 +673,42 @@
       letter-spacing: 0.5px;
       margin-bottom: 5px;
     }
+    .terms-container {
+      font-size: 0.55rem;
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+      max-width: 280px;
+    }
+    .terms-container input[type="checkbox"] {
+      width: 11px;
+      height: 11px;
+    }
     .success-message,
     .message-container,
     .matrix-line,
     #redirecting-container {
       font-size: 0.65rem !important;
+    }
+    .terms-page .intro-text {
+      font-size: 0.75rem;
+      margin-bottom: 1.6rem;
+    }
+    .terms-page h1 {
+      font-size: 1.1rem;
+    }
+    .terms-container-inner {
+      font-size: 0.7rem;
+      padding: 10px;
+      margin-top: -23%;
+    }
+    .terms-page ul li::before {
+      font-size: 0.6rem;
+    }
+    .back-link {
+      font-size: 0.65rem;
+    }
+    .back-link .arrow {
+      font-size: 0.7rem;
     }
   }
 
@@ -408,53 +716,101 @@
   @media (max-width: 1024px) and (min-width: 769px) {
     .logo {
       max-width: 160px;
-      top: calc(40% - 110px); /* Moved closer to Darklake text */
+      top: calc(40% - 110px);
     }
     h1 {
       top: 40%;
     }
     .form-container {
       max-width: 340px;
-      top: calc(40% + 60px); /* Moved slightly down from +50px */
+      top: calc(40% + 60px);
     }
     .access-text {
       font-size: 0.8rem;
       margin-bottom: 8px;
+    }
+    .terms-container {
+      font-size: 0.7rem;
+      margin-bottom: 8px;
+      max-width: 340px;
+    }
+    .terms-page .intro-text {
+      font-size: 0.95rem;
+      margin-bottom: 2.2rem;
+    }
+    .terms-page h1 {
+      font-size: 1.4rem;
+    }
+    .terms-container-inner {
+      font-size: 0.85rem;
+      padding: 18px;
+      margin-top: -10%;
+    }
+    .terms-page ul li::before {
+      font-size: 0.75rem;
     }
   }
 </style>
 </head>
 <body>
 
-<img src="https://i.postimg.cc/7ZCb6G6y/Adobe-Express-file.png" alt="Darklake Logo" class="logo" id="logo">
+<div class="main-content" id="main-content">
+  <img src="https://i.postimg.cc/7ZCb6G6y/Adobe-Express-file.png" alt="Darklake Logo" class="logo" id="logo">
 
-<h1 id="darklake">
-  <span>D</span><span>A</span><span>R</span><span>K</span><span>L</span><span>A</span><span>K</span><span>E</span>
-</h1>
+  <h1 id="darklake">
+    <span>D</span><span>A</span><span>R</span><span>K</span><span>L</span><span>A</span><span>K</span><span>E</span>
+  </h1>
 
-<div class="form-container" id="form-container">
-  <div class="aligned-container">
-    <p class="access-text">ACCESS THE BETA PROGRAM</p>
-    <form id="betaForm" method="POST" novalidate>
-      <input type="email" name="email" placeholder="enter your email" required />
-      <button type="submit">&gt;</button>
-    </form>
-    <div class="success-message" id="successMessage">
-      <div id="received-container" class="message-container">
-        <span id="received" class="matrix-line"></span>
-      </div>
-      <div id="enjoy-container" class="message-container">
-        <span id="enjoy" class="matrix-line"></span>
-      </div>
-      <div id="redirecting-container" class="message-container">
-        <span id="redirecting-text"></span> <span id="countdown">5</span>
+  <div class="form-container" id="form-container">
+    <div class="aligned-container">
+      <p class="access-text">ACCESS THE BETA PROGRAM</p>
+      <form id="betaForm" method="POST" novalidate>
+        <div class="email-container">
+          <input type="email" name="email" placeholder="enter your email" required />
+          <button type="submit">&gt;</button>
+        </div>
+        <div class="terms-container">
+          <input type="checkbox" id="terms" name="terms" required />
+          <label for="terms">I agree to the <a href="#" id="terms-link">Terms and Conditions.</a></label>
+        </div>
+      </form>
+      <div class="success-message" id="successMessage">
+        <div id="received-container" class="message-container">
+          <span id="received" class="matrix-line"></span>
+        </div>
+        <div id="enjoy-container" class="message-container">
+          <span id="enjoy" class="matrix-line"></span>
+        </div>
+        <div id="redirecting-container" class="message-container">
+          <span id="redirecting-text"></span> <span id="countdown">5</span>
+        </div>
       </div>
     </div>
   </div>
+
+  <div class="footer-contact">
+    <a href="mailto:hello@darklake.cc" aria-label="Email contact hello@darklake.cc">hello@darklake.cc</a>
+  </div>
 </div>
 
-<div class="footer-contact">
-  <a href="mailto:hello@darklake.cc" aria-label="Email contact hello@darklake.cc">hello@darklake.cc</a>
+<div class="terms-page" id="terms-page">
+  <div class="terms-container-inner" id="terms-container-inner">
+    <p class="intro-text">Some things beneath the surface are meant to stay quiet.</p>
+    <h1>Terms & Conditions</h1>
+    <p>
+      By submitting your email to DARKLAKE, you agree to the following:
+    </p>
+    <ul>
+      <li>Your email is collected for project updates and related communication.</li>
+      <li>It will not be shared, sold, or disclosed to anyone outside of DARKLAKE.</li>
+      <li>No hidden tracking, no unnecessary data — only what you choose to share.</li>
+      <li>You may request permanent removal of your information at any time.</li>
+    </ul>
+    <p>
+      Questions? Contact <a href="mailto:hello@darklake.cc">hello@darklake.cc</a>.
+    </p>
+    <a href="#" class="back-link" id="back-button"><span class="arrow">←</span> Back</a>
+  </div>
 </div>
 
 <script>
@@ -470,6 +826,16 @@
   const darklake = document.getElementById('darklake');
   const logo = document.getElementById('logo');
   const letterSpans = darklake.querySelectorAll('span');
+  const termsCheckbox = document.getElementById('terms');
+  const termsLink = document.getElementById('terms-link');
+  const termsPage = document.getElementById('terms-page');
+  const termsContainerInner = document.getElementById('terms-container-inner');
+  const mainContent = document.getElementById('main-content');
+  const backButton = document.getElementById('back-button');
+  const formContainer = document.getElementById('form-container');
+  const footerContact = document.querySelector('.footer-contact');
+  const termsContainer = document.querySelector('.terms-container');
+  const emailInput = form.querySelector('input[type="email"]');
 
   // Check if logo image loads successfully
   logo.addEventListener('error', () => {
@@ -479,31 +845,110 @@
     console.log('Logo image loaded successfully');
   });
 
-  const emailInput = form.querySelector('input[type="email"]');
-  emailInput.addEventListener('invalid', () => {
-    emailInput.setCustomValidity('Enter your email.');
+  // Show Terms and Conditions page with fade-in
+  termsLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    mainContent.style.display = 'none';
+    mainContent.classList.remove('active');
+    termsPage.style.display = 'flex';
+    termsContainerInner.classList.add('active');
   });
-  emailInput.addEventListener('input', () => {
-    emailInput.setCustomValidity('');
+
+  // Back to main page with fade-in
+  backButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    termsPage.style.display = 'none';
+    termsContainerInner.classList.remove('active');
+    mainContent.style.display = 'flex';
+    mainContent.classList.add('active');
+    // Skip individual element animations
+    letterSpans.forEach(span => {
+      span.style.animation = 'none';
+      span.style.color = '#eee';
+      span.style.opacity = '1';
+    });
+    darklake.style.animation = 'none';
+    darklake.style.opacity = '1';
+    darklake.style.color = '#eee';
+    logo.style.transition = 'none';
+    logo.style.opacity = '1';
+    formContainer.style.animation = 'none';
+    formContainer.style.opacity = '1';
+    formContainer.style.transform = 'translateX(-50%) translateY(0)';
+    footerContact.style.animation = 'none';
+    footerContact.style.opacity = '1';
   });
 
   window.addEventListener('load', () => {
-    setTimeout(() => {
+    mainContent.classList.add('active');
+    // Check if page is loaded from back navigation
+    if (performance.navigation.type === 2) {
+      // Skip individual element animations
       letterSpans.forEach(span => {
         span.style.animation = 'none';
-        span.style.color = '';
+        span.style.color = '#eee';
         span.style.opacity = '1';
       });
-    }, 7100);
-
-    setTimeout(() => {
-      darklake.classList.add('white');
-      logo.classList.add('visible');
-    }, 7200);
+      darklake.style.animation = 'none';
+      darklake.style.opacity = '1';
+      darklake.style.color = '#eee';
+      logo.style.transition = 'none';
+      logo.style.opacity = '1';
+      formContainer.style.animation = 'none';
+      formContainer.style.opacity = '1';
+      formContainer.style.transform = 'translateX(-50%) translateY(0)';
+      footerContact.style.animation = 'none';
+      footerContact.style.opacity = '1';
+    } else {
+      // Run animations for fresh load
+      setTimeout(() => {
+        letterSpans.forEach(span => {
+          span.style.animation = 'none';
+          span.style.color = '';
+          span.style.opacity = '1';
+        });
+      }, 7100);
+      setTimeout(() => {
+        darklake.classList.add('white');
+        logo.classList.add('visible');
+      }, 7200);
+    }
   });
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    let shouldFlickerEmail = false;
+    let shouldFlickerTerms = false;
+
+    // Check if terms checkbox is checked
+    if (!termsCheckbox.checked) {
+      shouldFlickerTerms = true;
+    }
+    // Check if email input is empty
+    if (!emailInput.value) {
+      shouldFlickerEmail = true;
+    }
+
+    // Apply flicker animations if needed
+    if (shouldFlickerEmail || shouldFlickerTerms) {
+      if (shouldFlickerEmail) {
+        emailInput.classList.add('flicker');
+      }
+      if (shouldFlickerTerms) {
+        termsContainer.classList.add('flicker');
+      }
+      setTimeout(() => {
+        if (shouldFlickerEmail) {
+          emailInput.classList.remove('flicker');
+        }
+        if (shouldFlickerTerms) {
+          termsContainer.classList.remove('flicker');
+        }
+      }, 400); // 2 flickers × 200ms
+      return;
+    }
+
+    // Proceed with form submission
     const formData = new FormData(form);
     const email = formData.get('email');
     
