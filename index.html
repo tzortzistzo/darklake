@@ -514,7 +514,7 @@
   @media (max-width: 768px) {
     .logo {
       max-width: 140px;
-      top: calc(40% - 100px);
+      top: calc(40% - 90px);
     }
     h1 {
       top: 40%;
@@ -583,7 +583,7 @@
   @media (max-width: 480px) {
     .logo {
       max-width: 110px;
-      top: calc(40% - 90px);
+      top: calc(40% - 80px);
     }
     h1 {
       top: 40%;
@@ -647,7 +647,7 @@
   @media (max-width: 360px) {
     .logo {
       max-width: 90px;
-      top: calc(40% - 80px);
+      top: calc(40% - 70px);
     }
     h1 {
       top: 40%;
@@ -935,12 +935,17 @@
     // Apply flicker animations if needed
     if (shouldFlickerEmail || shouldFlickerTerms) {
       if (shouldFlickerEmail) {
+        // Remove and re-add flicker class to ensure animation triggers
+        emailInput.classList.remove('flicker');
+        void emailInput.offsetWidth; // Force reflow
         emailInput.classList.add('flicker');
         emailInput.addEventListener('animationend', () => {
           emailInput.classList.remove('flicker');
         }, { once: true });
       }
       if (shouldFlickerTerms) {
+        termsContainer.classList.remove('flicker');
+        void termsContainer.offsetWidth; // Force reflow
         termsContainer.classList.add('flicker');
         termsContainer.addEventListener('animationend', () => {
           termsContainer.classList.remove('flicker');
@@ -996,7 +1001,7 @@
         eraseMatrixText(receivedSpan, () => {
           receivedContainer.classList.remove('active');
           const now = new Date();
-          const hour = now.getHours();
+          const hour = new Date().getHours();
           let message = "ENJOY YOUR DAY.";
           if (hour >= 5 && hour < 12) message = "ENJOY YOUR MORNING.";
           else if (hour >= 12 && hour < 17) message = "ENJOY YOUR AFTERNOON.";
