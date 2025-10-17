@@ -210,10 +210,18 @@
   
   input[type="email"].flicker {
     animation: flicker 0.25s ease-in-out 2;
+    -webkit-animation: flicker 0.25s ease-in-out 2;
+  }
+  
+  input[type="email"].flicker-text {
+    animation: flickerText 0.25s ease-in-out 2;
+    -webkit-animation: flickerText 0.25s ease-in-out 2;
   }
   
   input[type="email"].flicker::placeholder {
     animation: flicker 0.25s ease-in-out 2;
+    -webkit-animation: flicker 0.25s ease-in-out 2;
+    will-change: opacity;
   }
   
   @keyframes flicker {
@@ -222,9 +230,16 @@
     100% { opacity: 1; }
   }
   
+  @keyframes flickerText {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+  }
+  
   input::placeholder {
     color: #555;
     font-size: 12px;
+    will-change: opacity;
   }
   
   button {
@@ -263,6 +278,7 @@
   .terms-container.flicker input[type="checkbox"],
   .terms-container.flicker label {
     animation: flicker 0.25s ease-in-out 2;
+    -webkit-animation: flicker 0.25s ease-in-out 2;
   }
   
   .terms-container input[type="checkbox"] {
@@ -537,9 +553,16 @@
     }
     input[type="email"].flicker {
       animation: flicker 0.25s ease-in-out 2;
+      -webkit-animation: flicker 0.25s ease-in-out 2;
+    }
+    input[type="email"].flicker-text {
+      animation: flickerText 0.25s ease-in-out 2;
+      -webkit-animation: flickerText 0.25s ease-in-out 2;
     }
     input[type="email"].flicker::placeholder {
       animation: flicker 0.25s ease-in-out 2;
+      -webkit-animation: flicker 0.25s ease-in-out 2;
+      will-change: opacity;
     }
     button {
       padding: 8px 14px;
@@ -555,6 +578,11 @@
       letter-spacing: 0.7px;
       margin-bottom: 8px;
       max-width: 320px;
+    }
+    .terms-container.flicker input[type="checkbox"],
+    .terms-container.flicker label {
+      animation: flicker 0.25s ease-in-out 2;
+      -webkit-animation: flicker 0.25s ease-in-out 2;
     }
     .terms-container input[type="checkbox"] {
       width: 13px;
@@ -611,9 +639,16 @@
     }
     input[type="email"].flicker {
       animation: flicker 0.25s ease-in-out 2;
+      -webkit-animation: flicker 0.25s ease-in-out 2;
+    }
+    input[type="email"].flicker-text {
+      animation: flickerText 0.25s ease-in-out 2;
+      -webkit-animation: flickerText 0.25s ease-in-out 2;
     }
     input[type="email"].flicker::placeholder {
       animation: flicker 0.25s ease-in-out 2;
+      -webkit-animation: flicker 0.25s ease-in-out 2;
+      will-change: opacity;
     }
     .access-text {
       font-size: 0.7rem;
@@ -625,6 +660,11 @@
       letter-spacing: 0.5px;
       margin-bottom: 6px;
       max-width: 300px;
+    }
+    .terms-container.flicker input[type="checkbox"],
+    .terms-container.flicker label {
+      animation: flicker 0.25s ease-in-out 2;
+      -webkit-animation: flicker 0.25s ease-in-out 2;
     }
     .terms-container input[type="checkbox"] {
       width: 12px;
@@ -682,9 +722,16 @@
     }
     input[type="email"].flicker {
       animation: flicker 0.25s ease-in-out 2;
+      -webkit-animation: flicker 0.25s ease-in-out 2;
+    }
+    input[type="email"].flicker-text {
+      animation: flickerText 0.25s ease-in-out 2;
+      -webkit-animation: flickerText 0.25s ease-in-out 2;
     }
     input[type="email"].flicker::placeholder {
       animation: flicker 0.25s ease-in-out 2;
+      -webkit-animation: flicker 0.25s ease-in-out 2;
+      will-change: opacity;
     }
     button {
       padding: 6px 12px;
@@ -700,6 +747,11 @@
       letter-spacing: 0.5px;
       margin-bottom: 5px;
       max-width: 280px;
+    }
+    .terms-container.flicker input[type="checkbox"],
+    .terms-container.flicker label {
+      animation: flicker 0.25s ease-in-out 2;
+      -webkit-animation: flicker 0.25s ease-in-out 2;
     }
     .terms-container input[type="checkbox"] {
       width: 11px;
@@ -755,6 +807,11 @@
       font-size: 0.7rem;
       margin-bottom: 8px;
       max-width: 340px;
+    }
+    .terms-container.flicker input[type="checkbox"],
+    .terms-container.flicker label {
+      animation: flicker 0.25s ease-in-out 2;
+      -webkit-animation: flicker 0.25s ease-in-out 2;
     }
     .terms-page .intro-text {
       font-size: 0.95rem;
@@ -959,17 +1016,20 @@
     // Apply flicker animations if needed
     if (shouldFlickerEmail || shouldFlickerTerms) {
       if (shouldFlickerEmail) {
-        // Remove and re-add flicker class to ensure animation triggers
-        emailInput.classList.remove('flicker');
-        void emailInput.offsetWidth; // Force reflow
+        // Remove and re-add flicker classes to ensure animation triggers
+        emailInput.classList.remove('flicker', 'flicker-text');
+        void getComputedStyle(emailInput).opacity; // Force reflow
         emailInput.classList.add('flicker');
+        if (emailValue) {
+          emailInput.classList.add('flicker-text');
+        }
         emailInput.addEventListener('animationend', () => {
-          emailInput.classList.remove('flicker');
+          emailInput.classList.remove('flicker', 'flicker-text');
         }, { once: true });
       }
       if (shouldFlickerTerms) {
         termsContainer.classList.remove('flicker');
-        void termsContainer.offsetWidth; // Force reflow
+        void getComputedStyle(termsContainer).opacity; // Force reflow
         termsContainer.classList.add('flicker');
         termsContainer.addEventListener('animationend', () => {
           termsContainer.classList.remove('flicker');
