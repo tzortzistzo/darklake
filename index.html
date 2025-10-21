@@ -493,7 +493,7 @@
     position: absolute;
     left: 0;
     color: #c0c0c0;
-    font-size: 0.8 remain;
+    font-size: 0.8rem;
   }
   
   .terms-page a {
@@ -884,13 +884,16 @@
       By submitting your email to DARKLAKE, you agree to the following:
     </p>
     <ul>
-      <li>Your email is collected for project updates and related communication.</li>
-      <li>It will not be shared, sold, or disclosed to anyone outside of DARKLAKE.</li>
-      <li>You may request permanent removal of your information at any time.</li>
+      <li>Who We Are: The controller of your data is Darklake.cc, operated by DARKLAKE. You may contact us at <a href="mailto:operations@darklake.cc">operations@darklake.cc</a> for any data-related questions.</li>
+      <li>What We Collect: We collect only one piece of information: your email address.</li>
+      <li>Why We Collect It: Your email is used solely to send instructions, clues, or communications related to the DARKLAKE experience. We do not send advertising, sell data, or use analytics to track you.</li>
+      <li>Legal Basis: Your consent — given when you submit your email through our form.</li>
+      <li>How Long We Keep It: Until you withdraw consent, the project ends, or after one year of inactivity — whichever comes first.</li>
+      <li>Who Has Access: Our hosting provider processes the data on our behalf under standard EU-compatible terms.</li>
+      <li>Your Rights: You may request to access, correct, delete, or withdraw consent at any time by writing to <a href="mailto:operations@darklake.cc">operations@darklake.cc</a>.</li>
+      <li>Cookies & Tracking: This site uses no tracking cookies or analytics tools. If we add any in the future, you will be informed and given a choice.</li>
+      <li>Jurisdiction: This project operates under the data protection laws of the European Union and the United Kingdom.</li>
     </ul>
-    <p>
-      Questions? Contact <a href="mailto:operations@darklake.cc">operations@darklake.cc</a>.
-    </p>
     <a href="#" class="back-link" id="back-button"><span class="arrow">←</span> Back</a>
   </div>
 </div>
@@ -936,7 +939,7 @@
     termsContainerInner.classList.add('active');
   });
 
-  // Back to main page with fade-in
+  // Back to main page without animations
   backButton.addEventListener('click', (e) => {
     e.preventDefault();
     termsPage.style.display = 'none';
